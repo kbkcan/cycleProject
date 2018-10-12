@@ -1,0 +1,41 @@
+<html>
+<head>
+  <title>Login page</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="login_div" class="main-div">
+    <h3>로그인해라!</h3>
+    <input type="email" placeholder="Email..." id="email_field" />
+    <input type="password" placeholder="Password..." id="password_field" />
+
+    <button onclick="login()">Login to Account</button>
+    <button onclick="googlelogin()">Google Login</button>
+  </div>
+  
+  <div id="user_div" class="loggedin-div">
+    <h3>안녕 사용자</h3>
+    <p id="user_para">로그인 성공했다.</p>
+    <a href="./infor.html"><button>운동할래gkwlak?</button></a>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAq5vyhPSVxhoaOd55ewVb4sh3AvXNw4yw",
+      authDomain: "pi-iot-1b450.firebaseapp.com",
+      databaseURL: "https://pi-iot-1b450.firebaseio.com",
+      projectId: "pi-iot-1b450",
+      storageBucket: "pi-iot-1b450.appspot.com",
+      messagingSenderId: "1144253737"
+  };
+    firebase.initializeApp(config);
+  </script>
+  <script src="index.js"></script>
+
+</body>
+</html>

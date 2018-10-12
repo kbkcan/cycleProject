@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-firestore.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAq5vyhPSVxhoaOd55ewVb4sh3AvXNw4yw",
+    authDomain: "pi-iot-1b450.firebaseapp.com",
+    databaseURL: "https://pi-iot-1b450.firebaseio.com",
+    projectId: "pi-iot-1b450",
+    storageBucket: "pi-iot-1b450.appspot.com",
+    messagingSenderId: "1144253737"
+  };
+  firebase.initializeApp(config);
+  
+</script>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="src/jquery.percentageloader-0.1.js"></script>
+    <link rel="stylesheet" href="src/jquery.percentageloader-0.1.css">
+
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+
+      #topLoader {
+        width: 256px;
+        height: 256px;
+        margin-bottom: 32px;
+      }
+
+      #container {
+        width: 940px;
+        padding: 10px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #animateButton {
+        width: 256px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div id="container">
+      <div id="topLoader">
+      </div>
+<!-- 칼로리 거리 -->
+<script>
+  var some_whereRef = database.ref('/user/play');
+  some_whereRef.update({ kcal: 13 });
+</script>
+      <button id="animateButton">Animate Loader</button>
+      <input id="kg" type="text" value=13>몸무게
+      <button onclick="kg()">몸무게 저장</button>
+    
+       <script>
+        $(function() {
+          var $topLoader = $("#topLoader").percentageLoader({width: 256, height: 256, controllable : true, progress : 0.2, onProgressUpdate : function(val) {
+              $topLoader.setValue(Math.round(val * 1000));
+            }});
+
+          var topLoaderRunning = false;
+          $("#animateButton").click(function() {
+            if (topLoaderRunning) {
+              return;
+            }
+            topLoaderRunning = true;
+            $topLoader.setProgress(0);
+            $topLoader.setValue('0Kcal');
+            var kb = 0;
+            var totalKb = 999;
+
+            var animateFunc = function() {
+              kb += 17;
+              $topLoader.setProgress(kb / totalKb);
+              $topLoader.setValue(kb.toString() + 'Kcal');
+
+              if (kb < totalKb) {
+                setTimeout(animateFunc, 25);
+              } else {
+                topLoaderRunning = false;
+              }
+            }
+  
+            setTimeout(animateFunc, 25);
+
+          });
+        });
+      </script>
+    </div>
+
+  </body>
+</html>
