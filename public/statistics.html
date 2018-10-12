@@ -139,132 +139,18 @@
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
-                <div class="row"></div>
-						<!-- TWITTER PANEL -->
-						<div class="col-md-4 mb">
-                      		<div class="darkblue-panel" style="background: none; height: 250px;;">
-                      			<div class="darkblue-header">
-						  			<h5 style="color:#777777; font-weight: bold;">오늘 소모한 칼로리</h5>
-                      			</div>
-								<canvas id="serverstatus01" height="120" width="120">zzzz</canvas>
-								<script>
-									var doughnutData = [
-											{
-												value: 60,
-												color:"#68dff0"
-											},
-											{
-												value : 40,
-												color : "#444c57"
-											}
-										];
-                                        var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
-                                        var ctx = canvas.getContext("2d");
-                                        ctx.font = '30px Arial';
-                                        ctx.fillText("Hello World",10,50);
-								</script>
-								<p></p>
-								<footer>
-									<div class="pull-left">
-										<h5 style="color: #989898;" class="figure"><i class="fas fa-cookie"></i> 1500 <span class="unit">Kcal</span></h5>
-									</div>
-									<div class="pull-right">
-										<h5 style="color: #989898;"class="figure"><i class="fa fa-cookie-bite"></i> 60 <span style="font-size:0.5em;">%</span></h5>
-									</div>
-								</footer>
-                      		</div>
-						</div><!-- /col-md-4 -->
-              <div class="row">
-                  <div class="col-lg-9 main-chart">
-                  
-                  	<div class="row mtbox">
-                  		<div class="col-md-2 col-sm-2 col-md-offset-1 box0">
-                  			<div class="box1">
-                                <div style="font-size:1.3em; font-weight: bold;">심박수 - BPM</div>
-                                <span class="fa fa-heartbeat"></span>
-					  			<div class="figure">933 <span class="unit">BPM</span></div>
-                  			</div>
-                  		</div>
-                  		<div class="col-md-2 col-sm-2 box0">
-                  			<div class="box1">
-                                    <div style="font-size:1.3em; font-weight: bold;">평균속도</div>
-					  			<span class="fab fa-cloudscale"></span>
-					  			<div style="font-size:1.5em; font-weight: bold;">30 <span style="font-size:0.5em;">Km</span></div>
-                  			</div>
-                  		</div>
-                  		<div class="col-md-2 col-sm-2 box0">
-                  			<div class="box1">
-                                <div style="font-size:1.3em; font-weight: bold;">거리</div>
-					  			<span class="fas fa-bicycle"></span>
-					  			<div style="font-size:1.5em; font-weight: bold;">30 <span style="font-size:0.5em;">Km</span></div>
-                  			</div>
-                  		</div>
-                  		<div class="col-md-2 col-sm-2 box0">
-                  			<div class="box1">
-                                <div style="font-size:1.3em; font-weight: bold;">누적거리</div>
-					  			<span class="fas fa-chart-line"></span>
-					  			<div style="font-size:1.5em; font-weight: bold;">30 <span style="font-size:0.5em;">Km</span></div>
-                  			</div>
-                  		</div>                  	
-                  	</div><!-- /row mt -->	
-                    
-                    				
-					<div class="row">
-						<!-- TWITTER PANEL -->
-						<div class="col-md-4 mb">
-                      		<div class="darkblue-panel pn">
-                      			<div class="darkblue-header">
-						  			<h5>오늘 소모한 칼로리</h5>
-                      			</div>
-								<canvas id="serverstatus02" height="120" width="120"></canvas>
-								<script>
-									var doughnutData = [
-											{
-												value: 60,
-												color:"#68dff0"
-											},
-											{
-												value : 40,
-												color : "#444c57"
-											}
-										];
-										var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
-								</script>
-								<p></p>
-								<footer>
-									<div class="pull-left">
-										<h5><i class="fa fa-hdd-o"></i> 1000 Kcal</h5>
-									</div>
-									<div class="pull-right">
-										<h5>60% 소모</h5>
-									</div>
-								</footer>
-                      		</div>
-						</div><!-- /col-md-4 -->
-						
-						<div class="col-md-4 col-sm-4 mb">
-							<!-- REVENUE PANEL -->
-							<div class="darkblue-panel pn">
-								<div class="darkblue-header">
-									<h5>주간 칼로리소모량</h5>
-								</div>
-								<div class="chart mt">
-									<div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
-								</div>
-							</div>
-						</div><!-- /col-md-4 -->
-						
-					</div><!-- /row -->
-					
-                  </div><!-- /col-lg-9 END SECTION MIDDLE -->
-                  
-                  
+              <div class="row">                 
       <!-- **********************************************************************************************************************************************************
       RIGHT SIDEBAR CONTENT
       *********************************************************************************************************************************************************** -->
               </div><!-- /row -->
-              <div class="col-lg-9">
-                <h2 class="title-1 m-b-25">Earnings By Items</h2>
+              <div class="col-lg-9" style="margin-top: 5em;">
+                <select>
+                    <option>월간</option>
+                    <option>주간</option>
+                    <option>직접선택</option>
+                </select>
+                <input type="button" value="주간" />
                 <div class="table-responsive table--no-card m-b-40">
                     <table class="table table-borderless table-striped table-earning">
                         <thead>
