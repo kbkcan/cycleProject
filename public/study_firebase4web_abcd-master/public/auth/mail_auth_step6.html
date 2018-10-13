@@ -151,7 +151,6 @@
       var signup_mail = $('#INPUT_MAIL').val();
       var signup_password = $('#INPUT_PASSWORD').val();
       var signup_name = $('#INPUT_NAME').val();
-
       firebase.auth().createUserWithEmailAndPassword(signup_mail, signup_password).then(function(){
         // 메일 회원 가입에 성공 했을때
         /* 회원 정보 갱신 = 페이지 새로 고침 */

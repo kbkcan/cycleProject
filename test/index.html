@@ -53,6 +53,7 @@
     /* TODO 4. DB에서 '/메세지'값 읽어오기 */
     firebase.database().ref('/user/bpm').on('value', function(snapshot) {
       var message = snapshot.val();
+      alert(message);
       $("#DB_BPM").text(message);
       firebase.database().ref().update(update);
     });
@@ -213,7 +214,7 @@
                                 <button id="BTN_GOOGLE_LOGIN" type="button" class="btn indigo">구글 인증</button>
                                 <div style="font-size:1.3em; font-weight: bold;">심박수 - BPM</div>
                                 <span class="fa fa-heartbeat"></span>
-					  			<div id="DB_BPM" style="font-size:1.5em; font-weight: bold;">933 <span style="font-size:0.5em;">BPM</span></div>
+                                  <div id="DB_BPM" style="font-size:1.5em; font-weight: bold;">933 <span style="font-size:0.5em;">BPM</span></div>
                   			</div>
                   		</div>
                   		<div class="col-md-2 col-sm-2 box0">

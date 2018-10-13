@@ -7,7 +7,7 @@
   <title>firebase Database</title>
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
   <style> #CONTENTS{ min-height: 1000px;}</style>
 </head>
 
@@ -104,7 +104,15 @@
     // firebase.database().ref('/메세지').set('안녕하세요!');
 
     /* 4. DB에서 '/메세지'값 읽어오기 */
-    firebase.database().ref('/메세지').once('value', function(snapshot) {
+    // firebase.database().ref('/메세지').once('value', function(snapshot) {
+    //   var message = snapshot.val();
+    //   $("#DB_MESSAGE").text(message);
+    // });
+    
+//     (자전거무게+내 몸무게)*(평균속도 칼로리 지수)*시간
+
+// 거리 = count*3.14
+    firebase.database().ref('/user/BPM').on('value', function(snapshot) {
       var message = snapshot.val();
       $("#DB_MESSAGE").text(message);
     });
