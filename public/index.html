@@ -25,8 +25,9 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
-    <script src="assets/js/chart-master/Chart.js"></script>
 
+    <script src="assets/js/chart-master/Chart.js"></script>
+    
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -52,14 +53,7 @@
             	<ul class="nav pull-right top-menu">
                     <li><a class="logout" href="login.html"><b>로그아웃</b></a></li>
                     <li><a class="logout" href="#"><b>마이페이지</b></a></li>
-                </ul>
-                <!-- 유저 정보 확인용 요소 추가 -->
-				<ol id="USER_INFO">
-                    <li>UID : <span id="USER_UID" class="blue-text"></span></li>
-                    <li>메일 : <span id="USER_MAIL" class="blue-text"></span></li>
-                    <li>이름 : <span id="USER_NAME" class="blue-text"></span></li>
-                    <li><img id="USER_PHOTO"></li>
-                  </ol>
+            	</ul>
             </div>
         </header>
       <!--header end-->
@@ -150,7 +144,7 @@
 						<div class="col-md-4 mb">
                       		<div class="darkblue-panel" style="background: none; height: 250px;;">
                       			<div class="darkblue-header">
-                                      <h5 style="color:#777777; font-weight: bold;">오늘 소모한 칼로리</h5>
+						  			<h5 style="color:#777777; font-weight: bold;">오늘 소모한 칼로리</h5>
                       			</div>
 								<canvas id="serverstatus01" height="120" width="120">zzzz</canvas>
 								<script>
@@ -188,7 +182,7 @@
                   			<div class="box1">
                                 <div style="font-size:1.3em; font-weight: bold;">심박수 - BPM</div>
                                 <span class="fa fa-heartbeat"></span>
-					  			<div id="DB_BPM" class="figure">933 <span class="unit">BPM</span></div>
+					  			<div class="figure">933 <span class="unit">BPM</span></div>
                   			</div>
                   		</div>
                   		<div class="col-md-2 col-sm-2 box0">
@@ -530,23 +524,6 @@
             var to = $("#" + id).data("to");
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
-    </script>
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <!-- TODO 1. firebase SDK 링크 --> 
-    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
-    <script src="fireinit.js"></script>
-    <script type="text/javascript"> 
-    
-    /* TODO 2. DB에서 '/메세지'값 읽어오기 */
-    firebase.database.ref('/user/bpm').on('value', function(snapshot) {
-        var message = snapshot.val();
-        $("#DB_BPM").text(message);
-    });
     </script>
   
 

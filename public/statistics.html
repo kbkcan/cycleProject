@@ -8,7 +8,7 @@
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
     <title>CYCLE DASH</title>
-
+    
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     
@@ -33,6 +33,11 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="assets/css/jquery.mobile-1.4.5.min.css">
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script src="assets/js/jquery.mobile-1.4.5.min.js"></script>
+
+    
   </head>
 
   <body>
@@ -47,7 +52,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>CYCLE DASH</b></a>
+            <a href="index.html" class="logo header-text"><b>CYCLE DASH</b></a>
             <!--logo end-->
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
@@ -145,12 +150,21 @@
       *********************************************************************************************************************************************************** -->
               </div><!-- /row -->
               <div class="col-lg-9" style="margin-top: 5em;">
-                <select>
-                    <option>월간</option>
-                    <option>주간</option>
-                    <option>직접선택</option>
+                <select name="selectTime">
+                    <option value='월별'>월별</option>
+                    <option value='주별'>주별</option>
+                    <option value='직접선택'>직접선택</option>
                 </select>
-                <input type="button" value="주간" />
+                <input data-role="text" id="resultDate" type="text" readonly="true" placeholder="직접선택" readonly="true" />
+                <a href="#popupBaseic" data-role="button" data-position-to="window" data-rel="popup" id="selectDate">날짜선택</a>
+                <div data-role="popup"  id="popupBaseic" data-dismissible="false" >
+                    <h4 align="center" style="margin-bottom: 1em;">날짜 선택</h4>
+                    <input type="text" id="searchStart" data-role="text" readonly="true" placeholder="눌러주세요"/>
+                    <input type="text" id="searchEnd" data-role="text" readonly="true" placeholder="눌러주세요" />
+                    <a type="button" data-rel="back" data-role="button" id="sendDate" value="날짜선택 완료" style="margin: 1em 0em 1em 0em;">날짜선택완료</a>
+                    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+                </div>
+                <a data-role="button"><i class="fas fa-search"></i> 검색</a>
                 <div class="table-responsive table--no-card m-b-40">
                     <table class="table table-borderless table-striped table-earning">
                         <thead>
@@ -335,7 +349,7 @@
 
       <!--main content end-->
   </section>
-
+    
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/jquery-1.8.3.min.js"></script>
@@ -345,6 +359,9 @@
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
     <script src="assets/js/jquery.sparkline.js"></script>
 
+    <!-- Mobiscroll JS and CSS Includes -->
+    <link rel="stylesheet" href="assets/calendar/css/mobiscroll.jquery.min.css">
+    <script src="assets/calendar/js/mobiscroll.jquery.min.js"></script>
 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
@@ -354,7 +371,41 @@
 
     <!--script for this page-->
     <script src="assets/js/sparkline-chart.js"></script>    
-	<script src="assets/js/zabuto_calendar.js"></script>	
+    <script src="assets/js/zabuto_calendar.js"></script>	
+    
+    <!-- 캘린더 스크립트 -->
+    
+    <script>
+        
+        mobiscroll.settings = {
+        theme: 'ios',                         // Specify theme like: theme: 'ios' or omit setting to use default
+            lang: 'ko'                        // Specify language like: lang: 'pl' or omit setting to use default
+    };
+    $(function () {
+    $('#searchStart').mobiscroll().calendar();
+    $('#searchEnd').mobiscroll().calendar();
+    });
+    $("#sendDate").click(function(){
+        if($("#searchStart").val() == '' || $("#searchStart").val() == null){
+            alert('검색 날짜를 입력해주세요!');
+        }
+        else if($("#searchEnd").val() == '' || $("#searchEnd").val() == null){
+            alert('검색 날짜를 입력해주세요!');
+        }
+        else{
+            var searchStart = $("#searchStart").val();
+            var searchEnd = $("#searchEnd").val();
+            result = searchStart+" ~ "+searchEnd;
+            $("#resultDate").val(result);
+            $("#sendDate").attr('data-rel','back');
+            //$("#popupBaseic").css('visibility','hidden');
+     }
+            
+        });
+        $("#selectDate").click(function(){
+            //$("#popupBaseic").css('visibility','visible');
+        });
+    </script>
 	
 	<!-- <script type="text/javascript">
         $(document).ready(function () {
