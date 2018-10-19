@@ -9,6 +9,13 @@
 
     <title>CYCLE DASH</title>
 
+    <!-- TODO 1. firebase SDK 링크 -->
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+    <script src="fireinit.js"></script>
+
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     
@@ -207,9 +214,7 @@
 					  			<div style="font-size:1.5em; font-weight: bold;">30 <span style="font-size:0.5em;">Km</span></div>
                   			</div>
                   		</div>                  	
-                  	</div><!-- /row mt -->	
-                    
-                    				
+                  	</div><!-- /row mt -->		
 					<div class="row">
 						<!-- TWITTER PANEL -->
 						<div class="col-md-4 mb">
@@ -217,19 +222,25 @@
                       			<div class="darkblue-header">
 						  			<h5>오늘 소모한 칼로리</h5>
                       			</div>
-								<canvas id="serverstatus02" height="120" width="120"></canvas>
-								<script>
-									var doughnutData = [
+                                <canvas id="serverstatus02" height="120" width="120"></canvas>
+                                <script type="text/javascript">
+                                firebase.database().ref('/user/BPM').on('value', function(snapshot) {
+                                    var message = snapshot.val();
+                                    var test = [
 											{
-												value: 60,
+												value: message,
 												color:"#68dff0"
 											},
 											{
-												value : 40,
+												value : 100,
 												color : "#444c57"
 											}
-										];
-										var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
+                                        ];
+                                    
+									var doughnutData = test
+                                    var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
+                                });   
+                                    
 								</script>
 								<p></p>
 								<footer>
@@ -529,13 +540,7 @@
 
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <!-- TODO 1. firebase SDK 링크 --> 
-    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
-    <script src="fireinit.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script> 
     <script type="text/javascript"> 
     
     firebase.auth().onAuthStateChanged(function(user) {
@@ -559,15 +564,12 @@
 	   $('#USER_INFO').hide();
 	 }
    });
-    
-   firebase.database().ref('/user/BPM').on('value', function(snapshot) {
+    /* TODO 2. DB에서 '/메세지'값 읽어오기 */
+    firebase.database().ref('/user/BPM').on('value', function(snapshot) {
             //debugger;
             var message = snapshot.val();
             $("#DB_BPM").text(message);
         });
-
-    /* TODO 2. DB에서 '/메세지'값 읽어오기 */
-    
     </script>
   </body>
 </html>
