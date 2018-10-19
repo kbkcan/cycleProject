@@ -477,14 +477,14 @@ ul.top-menu > li > a {
     margin-right: 15px;
 }
 
-ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
+ul.top0-menu > li > a:hover, ul.top-menu > li > a:focus {
     border:1px solid #b6b6b6 !important;
-    background-color: transparent !important;
+  /*background-color: transparent !important;*/
     border-color: #b6b6b6 !important;
     text-decoration: none;
     border-radius: 4px;
     -webkit-border-radius: 4px;
-    color: #b6b6b6 !important;
+    color: #000000 !important;
 }
 
 .notify-row .badge {
@@ -2238,4 +2238,14 @@ label {
 .figure{
     font-size:1.5em;
     font-weight: bold;
+}
+[name="selectTime"]{
+    color: #000;
+}
+#popupBaseic{
+    padding: 10px 10px 10px 10px;
+
+}
+.header-text{
+    color:#ffffff !important;
 }
