@@ -1,0 +1,33 @@
+[debug] [2018-10-19T04:42:10.708Z] ----------------------------------------------------------------------
+[debug] [2018-10-19T04:42:10.710Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\nk333\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-10-19T04:42:10.710Z] CLI Version:   5.0.1
+[debug] [2018-10-19T04:42:10.710Z] Platform:      win32
+[debug] [2018-10-19T04:42:10.710Z] Node Version:  v10.12.0
+[debug] [2018-10-19T04:42:10.712Z] Time:          Fri Oct 19 2018 13:42:10 GMT+0900 (GMT+09:00)
+[debug] [2018-10-19T04:42:10.712Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-10-19T04:42:10.726Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-10-19T04:42:10.726Z] > authorizing via signed-in user
+[debug] [2018-10-19T04:42:10.726Z] [iam] checking project pi-iot-1b450 for permissions ["firebase.projects.get"]
+[debug] [2018-10-19T04:42:10.729Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/pi-iot-1b450:testIamPermissions  
+
+[debug] [2018-10-19T04:42:12.156Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-19T04:42:12.157Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/pi-iot-1b450  
+ 
+[debug] [2018-10-19T04:42:13.655Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\devtools\GitHub\cycleProject'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-10-19T04:42:14.344Z] Fetching environment
+[debug] [2018-10-19T04:42:14.346Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1144253737:getServerAppConfig  
+ 
+[debug] [2018-10-19T04:42:14.346Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1144253737/clients/_:getWebAppConfig  
+ 
+[debug] [2018-10-19T04:42:16.629Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2018-10-19T04:42:17.362Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-19T04:42:17.363Z] Starting @google-cloud/functions-emulator
+[debug] [2018-10-19T04:42:19.417Z] Parsing function triggers
+[info] i  functions: No HTTPS functions found. Use firebase functions:shell if you would like to emulate other types of functions.
