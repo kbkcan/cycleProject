@@ -2249,3 +2249,6 @@ label {
 .header-text{
     color:#ffffff !important;
 }
+.table-style{
+    overflow-x: hidden !important;
+}
