@@ -1,54 +1,60 @@
-var calCount ={};
 
-calCount.cal= function(rpm , startTime){
-    
-    var speed = getSpeed(rpm,startTime);
-    var indices = toIndices(speed);
 
-    var pWeight = 80.0;//사람 몸무게를 가져온다.
-    var bWeight = 10.0;//자전거 무게를 가져온다.
-    var endTime = new Date().toLocaleString();//현재 시간을 구함
-    
-    var kcal=(pWeight + bWeight) * indices * (endTime-startTime);
-
-    return kcal;
+function sumCal(cycleCount,startTime,pweight,bweight){
 
 };
 
+//5초당 count를 kcal로 변환
+function countToKcal(cycleCount){
+    var kcal = 0;
+
+    return kcal;
+}
 
 
 
 //평균속도를 구하는 함수
-calCount.getSpeed = function(rpm, startTime){
-    var endTime = new Date().toLocaleString();  //현재 시간을 구함
-    var inchOrMm = 26;  //자전거 타이어 규격 사이즈를 받음
-    var distanceMm = getDistance(rpm,inchOrMm);
+function getSpeed(cycleCount, startTime, inchOrMm){
+    var endTime = new Date();  //현재 시간을 구함
+   
+    var distanceMm = getDistance(cycleCount,inchOrMm);
     var distanceKm = distanceMm / 1000000;
     
     var startTime = new Date(startTime); // startTime 문자열 포맷 '월/일/년 시:분:초' String
-    
+    var timeDiff = endTime - startTime;
+    var timeH = timeDiff/(60*60*1000);
 
-
-    var speed = timeH/distanceKm;
+    console.log("timediff = ",timeDiff,'endTime',endTime,'startTime',startTime,'\n timeH=',timeH,'distanceKM',distanceKm);
+    var speed = distanceKm/timeH;
 
     return speed;
-}
+};
 
 
 //거리를 구하는 함수
-calCount.getDistance = function(rpm,inchOrMm){
-    var bDiameter = inchOrMm; //자전거 지름
-    if(inchOrcm <= 100){ //인치,cm 구분
-        bDiameter = inchOrMm * 25.4;
+function getDistance(cycleCount,inchOrMm){
+    var diameter = inchOrMm; //자전거 지름
+    if(inchOrMm <= 100){ //인치,mm 구분
+        diameter = inchOrMm * 25.4;
     }
-    return bDiameter * 3.14 * rpm;
-}
+    return diameter * Math.PI * cycleCount;
+};
 
 
 //평균속도를 칼로리 지수로 만드는 함수
-calCount.toIndices=function(speed){
+function toIndices(speed){
     var indices;
     return indices;
+};
+
+//현재 시간을 키값으로 포맷팅
+function dateToString(){
+    var today = new Date();
+
+    var underSecond = parseInt(today.getSeconds() / 5);
+    underSecond = underSecond * 5;
+    console.log('today.getSeconds()',today.getSeconds(),'underSecond',underSecond);
+    var strToday = today.getFullYear()+"-"+today.getMonth()+"-"+today.getDate()+" "+today.getHours()+":"+today.getMinutes()+":"+underSecond;
+    return strToday;
 }
 
-module.exports = calCount;

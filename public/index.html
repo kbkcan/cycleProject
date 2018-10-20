@@ -174,7 +174,7 @@
 								<p></p>
 								<footer>
 									<div class="pull-left">
-										<h5 style="color: #989898;" class="figure"><i class="fas fa-cookie"></i> 1500 <span class="unit">Kcal</span></h5>
+										<h5 style="color: #989898;" class="figure" ><i class="fas fa-cookie" id="DB_kcal" ></i><span class="unit">Kcal</span></h5>
 									</div>
 									<div class="pull-right">
 										<h5 style="color: #989898;"class="figure"><i class="fa fa-cookie-bite"></i> 60 <span style="font-size:0.5em;">%</span></h5>
@@ -541,8 +541,16 @@
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script> 
+    <script src="calCount.js"></script>
     <script type="text/javascript"> 
     
+
+    var bike_weight = 0;   //바이크 무게
+    var diameter = 0;  //바이크 지름
+    var weight = 0;     //사람 몸무게
+    var cycleCount = 0;        //회전수
+    var distance = 0;
+
     firebase.auth().onAuthStateChanged(function(user) {
 	 if (user) { // 인증되었을 때
 	   $('#AUTH_STATE').text(user.displayName + "님 로그인 하셨습니다.");
@@ -569,7 +577,47 @@
             //debugger;
             var message = snapshot.val();
             $("#DB_BPM").text(message);
-        });
+    });
+
+    //바이크 무게를 firebase에서 가져온다
+    firebase.database().ref('/user/user_data/bike_weight').on('value', function(snapshot) {
+        //debugger;
+        this.bike_weight = snapshot.val();
+    });
+
+  
+    // 바이크 지름을 가져온다.
+    firebase.database().ref('/user/user_data/diameter').on('value', function(snapshot) {
+        //debugger;
+        diameter = snapshot.val();
+    });
+
+    // 시작 시간을 가져온다.
+    firebase.database().ref('/user/play/startTime').on('value', function(snapshot) {
+        //debugger;
+        startTime = snapshot.val();
+    });
+
+
+    dateToString();
+
+    //시작시간 이후로 현재까지의 count배열을 가져온다.
+    firebase.database().ref('/user/play/log').on('value', function(snapshot) {
+        //debugger;
+        var timeAndCycleCount = snapshot.val();
+        var sumKcal = 0;
+        var kcal =0;
+        for(key in timeAndCycleCount){
+           //kcal = countTokcal(timeAndCycleCount[key]);//cycleCount를 kcal로 변환
+           sumKcal = sumKcal+kcal;
+        }
+        
+        
+        var speed = getSpeed(cycleCount, startTime,diameter);
+        // 칼로리를 계산한다.
+    });
+    
+   
     </script>
   </body>
 </html>
