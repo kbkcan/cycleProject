@@ -9,6 +9,13 @@
 
     <title>CYCLE DASH</title>
 
+    <!-- TODO 1. firebase SDK 링크 -->
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+    <script src="fireinit.js"></script>
+
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <!--external css-->
@@ -134,31 +141,18 @@
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
-            <div class="row">
-                <h3>목표 칼로리</h3>
+            <div class="w_row" style="padding-top: 10px">
+                <h3>사용자 정보입력</h3>
+                <br>
+                <h4>자전거 바퀴 지름</h4>
+                <input id="Wheel" type="text" class="form-control" placeholder="바퀴지름 입력" autofocus>
+                <h4>자전거 무게</h4>
+                <input id="B_weight" type="text" class="form-control" placeholder="Kg" autofocus>
                 <h4>몸무게</h4>
-                <input type="text">
+                <input id="Weight" type="text" class="form-control" placeholder="56Kg" autofocus>
                 <h4>목표 칼로리</h4>
-                <input type="text">
-                <h4>소모 칼로리 량</h4>
-                <input type="text">
-                <canvas id="serverstatus01" height="120" width="120">zzzz</canvas>
-                <script>
-                    var doughnutData = [
-                        {
-                            value: 30,
-                            color:"#68dff0"
-                        },
-                        {
-                            value : 70,
-                            color : "#444c57"
-                        }
-                    ];
-                    var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
-                    var ctx = canvas.getContext("2d");
-                    ctx.font = '30px Arial';
-                    ctx.fillText("Hello World",10,50);
-                </script>
+                <input id="Goal" type="text" class="form-control" placeholder="2400Kcal" autofocus>
+                
 			</div><!-- /row -->
           </section>
       </section>
