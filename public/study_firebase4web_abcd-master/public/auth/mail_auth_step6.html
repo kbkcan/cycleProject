@@ -35,17 +35,17 @@
         <div class="row">
           <div class="input-field col s12">
             <!-- 가입 메일 주소 입력 폼 -->
-            <input id="INPUT_MAIL" placeholder="메일 주소를 입력하세요" type="email" class="validate">
+            <input id="INPUT_MAILs" placeholder="메일 주소를 입력하세요" type="email" class="validate">
             <label for="INPUT_MAIL">Email</label>
           </div>
           <div class="input-field col s12">
             <!-- 가입 패스워드 입력 폼 -->
-            <input id="INPUT_PASSWORD" placeholder="비밀 번호를 입력하세요 (6자 이상)" type="password" class="validate">
+            <input id="INPUT_PASSWORDs" placeholder="비밀 번호를 입력하세요 (6자 이상)" type="password" class="validate">
             <label for="INPUT_PASSWORD">Password</label>
           </div>
           <div class="input-field col s12">
             <!-- 닉네임 입력 폼 -->
-            <input id="INPUT_NAME" placeholder="닉네임을 입력하세요" type="text" class="validate">
+            <input id="INPUT_NAMEs" placeholder="닉네임을 입력하세요" type="text" class="validate">
             <label for="INPUT_NAME">displayName</label>
           </div>
           <div class="input-field col s12">
@@ -148,15 +148,24 @@
 
     /* 회원 가입을 눌렀을 경우  */
     $('#BTN_SIGNUP').click(function(){
-      var signup_mail = $('#INPUT_MAIL').val();
-      var signup_password = $('#INPUT_PASSWORD').val();
-      var signup_name = $('#INPUT_NAME').val();
+      var signup_mail = $('#INPUT_MAILs').val();
+      var signup_password = $('#INPUT_PASSWORDs').val();
+      var signup_name = $('#INPUT_NAMEs').val();
 
       firebase.auth().createUserWithEmailAndPassword(signup_mail, signup_password).then(function(){
         // 메일 회원 가입에 성공 했을때
         /* 회원 정보 갱신 = 페이지 새로 고침 */
+        var user = firebase.auth().currentUser;
+        user.updateProfile({
+            displayName: signup_name
+          }).then(function() {
+            alert('이름 추가 성공!')
+          
+          }).catch(function(error) {
+            alert(error.message)
+          });
         alert("성공적으로 가입되었습니다.");
-        location.reload();
+        
         // 자동 로그인 성공으로 간주 = onAuthStateChanged()가 동작함
       }).catch(function(error) {
         // 메일 회원 가입에 실패 했을때

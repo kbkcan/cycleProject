@@ -9,6 +9,11 @@ Premium: http://www.gridgum.com
 /* Import fonts */
 @import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
 
+/* Add Page Remove */
+#join-page{
+    display:none;
+  }
+
 /* BASIC THEME CONFIGURATION */
 body {
     color: #797979;
