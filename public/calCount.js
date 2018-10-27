@@ -50,11 +50,7 @@ function toIndices(speed){
 //현재 시간을 키값으로 포맷팅
 function dateToString(){
     var today = new Date();
-
-    var underSecond = parseInt(today.getSeconds() / 5);
-    underSecond = underSecond * 5;
-    console.log('today.getSeconds()',today.getSeconds(),'underSecond',underSecond);
-    var strToday = today.getFullYear()+"-"+today.getMonth()+"-"+today.getDate()+" "+today.getHours()+":"+today.getMinutes()+":"+underSecond;
+    var strToday = today.getFullYear()+"-"+today.getMonth()+2+"-"+today.getDate()+" "+today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
     return strToday;
 }
 
