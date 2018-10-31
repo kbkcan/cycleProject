@@ -9,31 +9,28 @@
 
     <title>CYCLE DASH</title>
 
-    <!-- TODO 1. firebase SDK 링크 -->
-    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
-    <script src="index.js"></script>
-    <script src="fireinit.js"></script>
-
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    
-    <!--external css-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
-    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/theme.css">
-
-    
+	<link href="assets/css/bootstrap.css" rel="stylesheet">
+	<link href="assets/css/font-awesome.css" rel="stylesheet">
+	<link href="assets/css/docs.css" rel="stylesheet" >
+	<link href="bootstrap-social.css" rel="stylesheet" >
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+	<!--external css-->
+	<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous"> -->
+        
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/style-responsive.css" rel="stylesheet">
+	<link href="assets/css/style-responsive.css" rel="stylesheet">
+	
+	 <!-- firebase SDK 링크 -->
+	 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+	 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+	 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+	 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+	 
+	 <script src="index.js"></script>
+	 <script src="fireinit.js"></script>
 
-    <script src="assets/js/chart-master/Chart.js"></script>
-    
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -42,553 +39,269 @@
   </head>
 
   <body>
-  <section id="container" >
-      <!-- **********************************************************************************************************************************************************
-      TOP BAR CONTENT & NOTIFICATIONS
-      *********************************************************************************************************************************************************** -->
-      <!--header start-->
-      <header class="header black-bg" style="position: fixed;">
-              <div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-              </div>
-            <!--logo start-->
-            <a href="index.html" class="logo"><b>CYCLE DASH</b></a>
-            <!--logo end-->
-            <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
-                    <li><a id="BTN_LOGOUT" class="logout" href="#">로그아웃</a></li>
-                    <li><a class="logout" href="#">마이페이지</a></li>
-            	</ul>
-            </div>
-            <span id="AUTH_STATE" class="blue-text">(인증되지 않음)</span> -->
-            <div>    
-            <!-- 유저 정보 확인용 요소 추가 -->
-				<ol id="USER_INFO">
-				  <li>UID : <span id="USER_UID" class="blue-text"></span></li>
-				  <li>메일 : <span id="USER_MAIL" class="blue-text"></span></li>
-				  <li>이름 : <span id="USER_NAME" class="blue-text"></span></li>
-				  <li><img id="USER_PHOTO"></li>
-				</ol>
-				<!-- 로그아웃 버튼 -->
-				<button id="BTN_LOGOUT" type="button" class="btn indigo" style="display: none;"> 로 그 아 웃 </button>
-			  </div>
-        </header>
-      <!--header end-->
 
       <!-- **********************************************************************************************************************************************************
-      MAIN SIDEBAR MENU
+      Login CONTENT
       *********************************************************************************************************************************************************** -->
-      <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
-              
-              	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">Profile</h5>
 
-                  <li class="mt">
-                      <a class="" href="#">
-                          <i class="fa fa-home"></i>
-                          <span>홈</span>
-                      </a>
-                  </li>
-                  <li class="mt">
-                        <a class="" href="#">
-                            <i class="fa fa-user"></i>
-                            <span>마이페이지</span>
-                        </a>
-                    </li>
-
-                  <li class="sub-menu">
-                        <a href="javascript:;" >
-                            <i class=" fa fa-bar-chart-o"></i>
-                            <span>통계</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a  href="morris.html">주간</a></li>
-                            <li><a  href="chartjs.html">월별</a></li>
-                        </ul>
-                    </li>
-
-                  
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>Extra Pages</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="blank.html">Blank Page</a></li>
-                          <li><a  href="login.html">Login</a></li>
-                          <li><a  href="lock_screen.html">Lock Screen</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-tasks"></i>
-                          <span>Forms</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="form_component.html">Form Components</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-th"></i>
-                          <span>Data Tables</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="basic_table.html">Basic Table</a></li>
-                          <li><a  href="responsive_table.html">Responsive Table</a></li>
-                      </ul>
-                  </li>
-                  
-
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
-      <!--sidebar end-->
-      
-      <!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
-      <!--main content start-->
-                <div class="row"></div>
-                        <!-- TWITTER PANEL -->
-						<div class="col-md-4 mb">
-                              <div class="darkblue-panel" style="background: none; height: 250px;;">
-                      			<div class="darkblue-header">
-						  			<h5 style="color:#777777; font-weight: bold;">오늘 소모한 칼로리</h5>
-                      			</div>
-								<canvas id="serverstatus01" height="120" width="120"></canvas>
-								<script>
-									var doughnutData = [
-											{
-												value: 60,
-												color:"#68dff0"
-											},
-                                            
-											{
-												value : 40,
-												color : "#444c57"
-											}
-										];
-                                        var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
-                                        var ctx = canvas.getContext("2d");
-                                        ctx.font = '30px Arial';
-                                        ctx.fillText("Hello World",10,50);
-								</script>
-								<p></p>
-								<footer>
-									<div class="pull-left">
-										<h5 style="color: #989898;" class="figure"><i class="fas fa-cookie"></i> 1500 <span class="unit">Kcal</span></h5>
-									</div>
-									<div class="pull-right">
-										<h5 style="color: #989898;"class="figure"><i class="fa fa-cookie-bite"></i> 60 <span style="font-size:0.5em;">%</span></h5>
-									</div>
-								</footer>
-                      		</div>
-                        </div><!-- /col-md-4 -->
-                    </div>
-                    <div id="test2">
-              <div class="row">
-                  <div class="col-lg-9 main-chart">
-                  
-                  	<div class="row mtbox">
-                  		<div class="col-md-2 col-sm-2 col-md-offset-1 box0">
-                  			<div class="box1">
-                                <div style="font-size:1.3em; font-weight: bold;">심박수 - BPM</div>
-                                <span class="fa fa-heartbeat"></span>
-					  			<div id="DB_BPM" class="figure">933 <span class="unit">BPM</span></div>
-                  			</div>
-                  		</div>
-                  		<div class="col-md-2 col-sm-2 box0">
-                  			<div class="box1">
-                                    <div style="font-size:1.3em; font-weight: bold;">평균속도</div>
-					  			<span class="fab fa-cloudscale"></span>
-					  			<div style="font-size:1.5em; font-weight: bold;">30 <span style="font-size:0.5em;">Km</span></div>
-                  			</div>
-                  		</div>
-                  		<div class="col-md-2 col-sm-2 box0">
-                  			<div class="box1">
-                                <div style="font-size:1.3em; font-weight: bold;">거리</div>
-					  			<span class="fas fa-bicycle"></span>
-					  			<div style="font-size:1.5em; font-weight: bold;">30 <span style="font-size:0.5em;">Km</span></div>
-                  			</div>
-                  		</div>
-                  		<div class="col-md-2 col-sm-2 box0">
-                  			<div class="box1">
-                                <div style="font-size:1.3em; font-weight: bold;">누적거리</div>
-					  			<span class="fas fa-chart-line"></span>
-					  			<div style="font-size:1.5em; font-weight: bold;">30 <span style="font-size:0.5em;">Km</span></div>
-                  			</div>
-                  		</div>                  	
-                  	</div><!-- /row mt -->		
-					<div class="row">
-						<!-- TWITTER PANEL -->
-						<div class="col-md-4 mb">
-                      		<div class="darkblue-panel pn">
-                      			<div class="darkblue-header">
-						  			<h5>오늘 소모한 칼로리</h5>
-                      			</div>
-                                <canvas id="serverstatus02" height="120" width="120"></canvas>
-                                <script type="text/javascript">
-                                firebase.database().ref('/user/BPM').on('value', function(snapshot) {
-                                    var message = snapshot.val();
-                                    var test = [
-											{
-												value: message,
-												color:"#68dff0"
-											},
-											{
-												value : 100,
-												color : "#444c57"
-											}
-                                        ];
-                                    
-									var doughnutData = test
-                                    var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
-                                });   
-								</script>
-								<p></p>
-								<footer>
-									<div class="pull-left">
-										<h5><i class="fa fa-hdd-o"></i> 1000 Kcal</h5>
-									</div>
-									<div class="pull-right">
-										<h5>60% 소모</h5>
-									</div>
-								</footer>
-                      		</div>
-						</div><!-- /col-md-4 -->
-						
-						<div class="col-md-4 col-sm-4 mb">
-							<!-- REVENUE PANEL -->
-							<div class="darkblue-panel pn">
-								<div class="darkblue-header">
-									<h5>주간 칼로리소모량</h5>
-								</div>
-								<div class="chart mt">
-									<div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
-								</div>
-							</div>
-						</div><!-- /col-md-4 -->
-						
-					</div><!-- /row -->
+	  <div id="login-page">
+	  	<div class="container">
+	  	
+		      <form class="form-login" action="index.html">
+		        <h2 class="form-login-heading">로그인</h2>
+		        <div class="login-wrap">
+					<!-- 로그인 메일 주소 입력 폼 -->
+		            <input id="SIGNIN_MAIL" type="email" class="form-control" placeholder="메일 주소를 입력하세요" autofocus>
+					<br>
+					<!-- 로그인 패스워드 입력 폼 -->
+		            <input id="SIGNIN_PASSWORD" type="password" class="form-control" placeholder="비밀번호를 입력하세요">
+		            <label class="checkbox">
+		                <span class="pull-right">
+		                    <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
+		
+		                </span>
+					</label>
+					<!-- 로그인 버튼  -->
+		            <button id="BTN_SIGNIN" class="btn btn-theme btn-block" type="button"><i class="fa fa-lock"></i> 회 원 로 그 인 </button>
+					<hr>
 					
-                  </div><!-- /col-lg-9 END SECTION MIDDLE -->
-                  
-                  
-      <!-- **********************************************************************************************************************************************************
-      RIGHT SIDEBAR CONTENT
-      *********************************************************************************************************************************************************** -->
-              </div><!-- /row -->
-              <div class="col-lg-9">
-                <h2 class="title-1 m-b-25">Earnings By Items</h2>
-                <div class="table-responsive table--no-card m-b-40">
-                    <table class="table table-borderless table-striped table-earning">
-                        <thead>
-                            <tr>
-                                <th>날짜</th>
-                                <th>목표(Kcal)</th>
-                                <th>소모(Kcal)</th>
-                                <th class="text-right">달성률</th>
+		            <div class="login-social-link centered">
+					<p>or you can sign in via your social network</p>
+					<a id="BTN_GOOGLE_LOGIN" class="btn btn-block btn-social btn-google">
+						<span class="fa fa-google"></span>
+						Sign in with Google
+					  </a>
+					<a id="BTN_TWITTER_LOGIN"class="btn btn-block btn-social btn-twitter">
+						<span class="fa fa-twitter"></span>
+						Sign in with Twitter
+					  </a>
+					  <a id="BTN_FACEBOOK_LOGIN" class="btn btn-block btn-social btn-facebook">
+						<span class="fa fa-facebook"></span>
+						Sign in with Facebook
+					  </a>
+		            </div>
+		            <div class="registration">
+		                Don't have an account yet?<br/>
+		                <a class="" onclick="joinFuction()" href="#">
+		                    Create an account
+		                </a>
+		            </div>
+		
+		        </div>
+		
+		          <!-- Modal -->
+		          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+		              <div class="modal-dialog">
+		                  <div class="modal-content">
+		                      <div class="modal-header">
+		                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                          <h4 class="modal-title">Forgot Password ?</h4>
+		                      </div>
+		                      <div class="modal-body">
+		                          <p>Enter your e-mail address below to reset your password.</p>
+		                          <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+		
+		                      </div>
+		                      <div class="modal-footer">
+		                          <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+		                          <button class="btn btn-theme" type="button">Submit</button>
+		                      </div>
+		                  </div>
+		              </div>
+		          </div>
+		          <!-- modal -->
+		
+		      </form>	  	
+	  	
+	  	</div>
+	  </div>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2018-09-29 05:57</td>
-                                <td>1000</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
+	  <!-- **********************************************************************************************************************************************************
+    Join CONTENT
+    *********************************************************************************************************************************************************** -->
 
-                            </tr>
-                            <tr>
-                                <td>2018-09-28 01:22</td>
-                                <td>1000</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-
-                            </tr>
-                            <tr>
-                                <td>2018-09-27 02:12</td>
-                                <td>1000</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-
-                            </tr>
-                            <tr>
-                                <td>2018-09-26 23:06</td>
-                                <td>1000</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-
-                            </tr>
-                            <tr>
-                                <td>2018-09-25 19:03</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-
-                            </tr>
-                            <tr>
-                                <td>2018-09-29 05:57</td>
-                                <td>100392</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-
-                            </tr>
-                            <tr>
-                                <td>2018-09-24 19:10</td>
-                                <td>100391</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-          </section>
-      </section>
-
-      <!--main content end-->
-  </section>
-
+    <div id="join-page">
+        <div class="container">
+        
+            <form class="form-login">
+                <h2 class="form-login-heading">회원가입</h2>
+                <div class="login-wrap">
+                    <!-- 회원가입 메일 주소 입력 폼 -->
+		            <input id="INPUT_MAIL" type="email" class="form-control" placeholder="메일 주소를 입력하세요" autofocus>
+                    <br>
+                    <!-- 로그인 패스워드 입력 폼 -->
+		            <input id="INPUT_PASSWORD" type="password" class="form-control" placeholder="비밀번호를 입력하세요">
+					<br>
+					<!-- 로그인 이름 입력 폼 -->
+                    <input id="INPUT_NAME" type="text" class="form-control" placeholder="이름을 입력하세요">
+                    <br>
+					<button id="BTN_SIGNUP" class="btn btn-theme btn-block" type="button"><i class="fa fa-user-plus"></i> Join</button>
+					<br>
+					<div class="registration">
+					<a class="" onclick="joinFuction()" href="#">
+						Cancel
+					</a>
+				  </div>
+                </div>       
+            </form>	  	
+        
+        </div>
+	</div>
+	
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/jquery-1.8.3.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="assets/js/jquery.scrollTo.min.js"></script>
-    <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="assets/js/jquery.sparkline.js"></script>
 
-
-    <!--common script for all pages-->
-    <script src="assets/js/common-scripts.js"></script>
-    
-    <script type="text/javascript" src="assets/js/gritter/js/jquery.gritter.js"></script>
-    <script type="text/javascript" src="assets/js/gritter-conf.js"></script>
-
-    <!--script for this page-->
-    <script src="assets/js/sparkline-chart.js"></script>    
-	<script src="assets/js/zabuto_calendar.js"></script>	
-	
-	<!-- <script type="text/javascript">
-        $(document).ready(function () {
-        var unique_id = $.gritter.add({
-            // (string | mandatory) the heading of the notification
-            title: 'Welcome to Dashgum!',
-            // (string | mandatory) the text inside the notification
-            text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo. Free version for <a href="http://blacktie.co" target="_blank" style="color:#ffd777">BlackTie.co</a>.',
-            // (string | optional) the image to display on the left
-            image: 'assets/img/ui-sam.jpg',
-            // (bool | optional) if you want it to fade out on its own or just sit there
-            sticky: true,
-            // (int | optional) the time you want it to be alive for before fading out
-            time: '',
-            // (string | optional) the class name you want to apply to that specific message
-            class_name: 'my-sticky-class'
-        });
-
-        return false;
-        });
-	</script> -->
-	
-	<script type="application/javascript">
-        $(document).ready(function () {
-            $("#date-popover").popover({html: true, trigger: "manual"});
-            $("#date-popover").hide();
-            $("#date-popover").click(function (e) {
-                $(this).hide();
-            });
-        
-            $("#my-calendar").zabuto_calendar({
-                action: function () {
-                    return myDateFunction(this.id, false);
-                },
-                action_nav: function () {
-                    return myNavFunction(this.id);
-                },
-                ajax: {
-                    url: "show_data.php?action=1",
-                    modal: true
-                },
-                legend: [
-                    {type: "text", label: "Special event", badge: "00"},
-                    {type: "block", label: "Regular event", }
-                ]
-            });
-        });
-        
-        
-        function myNavFunction(id) {
-            $("#date-popover").hide();
-            var nav = $("#" + id).data("navigation");
-            var to = $("#" + id).data("to");
-            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-        }
-    </script>
-
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script> 
-    <script type="text/javascript"> 
-    
-    firebase.auth().onAuthStateChanged(function(user) {
+    <!--BACKSTRETCH-->
+    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+    <script type="text/javascript" src="assets/js/jquery.backstretch.min.js"></script>
+    <script>
+        $.backstretch("assets/img/login-bg.jpg", {speed: 500});
+	</script>
+ <script type="text/javascript">
+   /* 인증 상태 변화 감시하기 */
+   firebase.auth().onAuthStateChanged(function(user) {
 	 if (user) { // 인증되었을 때
-	   $('#AUTH_STATE').text(user.displayName + "님 로그인 하셨습니다.");
-	   $('#BTN_LOGOUT').show();
-	   $('#USER_NAME').text(user.displayName);
-	   $('#USER_MAIL').text(user.email);
-	   $('#USER_UID').text(user.uid);
-	   $('#USER_PHOTO').attr('src', user.photoURL);
-       $('#USER_INFO').show();
-      
-       firebase.database().ref('/user/BPM').on('value', function(snapshot) {
-            //debugger;
-            var message = snapshot.val();
-            $("#DB_BPM").text(message);
-        });
+	   location.href="./dash.html";
 	 } else { // 인증되지 않았을 때
 	   $('#AUTH_STATE').text("(인증되지 않음)");
 	   $('#BTN_LOGOUT').hide();
 	   $('#USER_INFO').hide();
 	 }
    });
-    /* TODO 2. DB에서 '/메세지'값 읽어오기 */
-    firebase.database().ref('/user/BPM').on('value', function(snapshot) {
-            //debugger;
-            var message = snapshot.val();
-            $("#DB_BPM").text(message);
+    /* 회원 가입을 눌렀을 경우  */
+ 	$('#BTN_SIGNUP').click(function(){
+    var signup_mail = $('#INPUT_MAIL').val();
+    var signup_password = $('#INPUT_PASSWORD').val();
+    var signup_name = $('#INPUT_NAME').val();
+
+    firebase.auth().createUserWithEmailAndPassword(signup_mail, signup_password).then(function(){
+      // 메일 회원 가입에 성공 했을때
+      /* 회원 정보 갱신 = 페이지 새로 고침 */
+      var user = firebase.auth().currentUser;
+      user.updateProfile({
+          displayName: signup_name
+        }).then(function() {
+          location.reload();
+        }).catch(function(error) {
         });
-    
-    /* 로그아웃 버튼을 눌렀을 때 인증 해제 하도록 하기 */
-    $('#BTN_LOGOUT').click(function(){
-      firebase.auth().signOut().then(function() {
-        alert("인증이 해제되었습니다.");
-        location.href = "./login2.html";
-      }, function(error) {
-        alert(error.message);
-      });
+      alert("성공적으로 가입되었습니다.");
+      // 자동 로그인 성공으로 간주 = onAuthStateChanged()가 동작함
+    }).catch(function(error) {
+      // 메일 회원 가입에 실패 했을때
+      alert(error.message);
     });
-    </script>
+  });
+
+	/* 회원가입 페이지 Enter Key를 눌렀을 경우  */
+	var input = document.getElementById("INPUT_NAME");
+	input.addEventListener("keyup", function(event) {
+		event.preventDefault();
+		if (event.keyCode === 13){
+			document.getElementById("BTN_SIGNUP").click();
+		}
+	});
+
+	/* 로그인 페이지 Enter Key를 눌렀을 경우  */
+	var input = document.getElementById("SIGNIN_PASSWORD");
+	input.addEventListener("keyup", function(event) {
+		event.preventDefault();
+		if (event.keyCode === 13){
+			document.getElementById("BTN_SIGNIN").click();
+		}
+	});
+
+	/* 로그인 버튼 클릭시 처리하기 */
+	$('#BTN_SIGNIN').click(function(){
+	var signin_mail = $('#SIGNIN_MAIL').val();
+	var signin_password = $('#SIGNIN_PASSWORD').val();
+	firebase.auth().signInWithEmailAndPassword(signin_mail, signin_password).then(function(){
+		// 메일 회원 로그인 성공으로 간주 = onAuthStateChanged()가 동작함
+		location.href = "./dash.html";
+	}).catch(function(error) {
+		// 회원 로그인에 실패 했을 경우
+		alert(error.message);
+	});
+	});
+
+	/* 구글버튼을 눌렀을 경우 인증 동작하게 */
+	$('#BTN_GOOGLE_LOGIN').click(function(){ // jQuery를 이용
+		/* 구글 인증을 provider 변수에 대체 */
+		var provider = new firebase.auth.GoogleAuthProvider();
+		firebase.auth().signInWithRedirect(provider)
+		firebase.auth().getRedirectResult().then(function(result) {
+		if (result.credential) {
+				var token = result.credential.accessToken;
+			}
+			// The signed-in user info.
+			var user = result.user;
+
+				}).catch(function(error) {
+					// Handle Errors here.
+					var errorCode = error.code;
+					var errorMessage = error.message;
+					// The email of the user's account used.
+					var email = error.email;
+					// The firebase.auth.AuthCredential type that was used.
+					var credential = error.credential;
+					alert(error.message);
+					break;
+					// ...
+					});
+		});
+
+	/* 트위터버튼을 눌렀을 경우 인증 동작하게 */
+	$('#BTN_TWITTER_LOGIN').click(function(){ // jQuery를 이용
+		/* 트위터버튼 인증을 provider 변수에 대체 */
+		alert("트위터버튼 미완료");
+		var provider = new firebase.auth.GoogleAuthProvider();
+		firebase.auth().signInWithRedirect(provider);
+		firebase.auth().getRedirectResult().then(function(result) {
+			if (result.credential) {
+				// This gives you a Google Access Token. You can use it to access the Google API.
+				var token = result.credential.accessToken;
+				}
+				// The signed-in user info.
+				var user = result.user;
+			//   location.href = "./";
+				}).catch(function(error) {
+					// Handle Errors here.
+					var errorCode = error.code;
+					var errorMessage = error.message;
+					// The email of the user's account used.
+					var email = error.email;
+					// The firebase.auth.AuthCredential type that was used.
+					var credential = error.credential;
+					// ...
+					});
+		});
+
+	/* 페이스북버튼을 눌렀을 경우 인증 동작하게 */
+	$('#BTN_FACEBOOK_LOGIN').click(function(){ // jQuery를 이용
+		/* 페이스북 인증을 provider 변수에 대체 */
+		alert("페이스북버튼 미완료");
+		var provider = new firebase.auth.FacebookAuthProvider();
+		provider.addScope('user_birthday');
+		firebase.auth().signInWithRedirect(provider);
+		firebase.auth().getRedirectResult().then(function(result) {
+			if (result.credential) {
+				// This gives you a Google Access Token. You can use it to access the Google API.
+				var token = result.credential.accessToken;
+				}
+				// The signed-in user info.
+				var user = result.user;
+			//   location.href = "./";
+				}).catch(function(error) {
+					// Handle Errors here.
+					var errorCode = error.code;
+					var errorMessage = error.message;
+					// The email of the user's account used.
+					var email = error.email;
+					// The firebase.auth.AuthCredential type that was used.
+					var credential = error.credential;
+					// ...
+					});
+		});
+	</script>
   </body>
 </html>

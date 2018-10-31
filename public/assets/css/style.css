@@ -14,6 +14,20 @@ Premium: http://www.gridgum.com
     display:none;
   }
 
+/* Dash.html style */
+  .stat>div{
+      height: 2em;
+      font-size:1.3em;
+      font-weight: bold;
+  }
+  .stat{
+      border-bottom: none !important;
+  }
+  .stat-img{
+      font-size:5em !important;
+
+  }
+  
 /* BASIC THEME CONFIGURATION */
 body {
     color: #797979;

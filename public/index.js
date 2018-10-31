@@ -1,4 +1,4 @@
-
+/* 로그인 화면전환*/
 function joinFuction() {
   var x = document.getElementById('login-page');
   var y = document.getElementById('join-page');
