@@ -1,36 +1,32 @@
-[debug] [2018-10-26T15:21:15.334Z] ----------------------------------------------------------------------
-[debug] [2018-10-26T15:21:15.338Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\kbkca\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] [2018-10-26T15:21:15.338Z] CLI Version:   4.2.1
-[debug] [2018-10-26T15:21:15.338Z] Platform:      win32
-[debug] [2018-10-26T15:21:15.338Z] Node Version:  v8.12.0
-[debug] [2018-10-26T15:21:15.339Z] Time:          Sat Oct 27 2018 00:21:15 GMT+0900 (대한민국 표준시)
-[debug] [2018-10-26T15:21:15.340Z] ----------------------------------------------------------------------
+[debug] [2018-11-01T02:30:04.616Z] ----------------------------------------------------------------------
+[debug] [2018-11-01T02:30:04.618Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\kbkca\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-11-01T02:30:04.619Z] CLI Version:   4.2.1
+[debug] [2018-11-01T02:30:04.619Z] Platform:      win32
+[debug] [2018-11-01T02:30:04.619Z] Node Version:  v8.12.0
+[debug] [2018-11-01T02:30:04.620Z] Time:          Thu Nov 01 2018 11:30:04 GMT+0900 (대한민국 표준시)
+[debug] [2018-11-01T02:30:04.620Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-10-26T15:21:15.368Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-10-26T15:21:15.370Z] > authorizing via signed-in user
-[debug] [2018-10-26T15:21:15.374Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-10-26T15:21:15.374Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
-
-[debug] [2018-10-26T15:21:15.870Z] <<< HTTP RESPONSE 200
-[debug] [2018-10-26T15:21:15.887Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/pi-iot-1b450  
+[debug] [2018-11-01T02:30:04.636Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-11-01T02:30:04.637Z] > authorizing via signed-in user
+[debug] [2018-11-01T02:30:04.639Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/pi-iot-1b450  
  
-[debug] [2018-10-26T15:21:16.987Z] <<< HTTP RESPONSE 200
-[debug] [2018-10-26T15:21:16.989Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/pi-iot-1b450  
+[debug] [2018-11-01T02:30:06.108Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-01T02:30:06.110Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/pi-iot-1b450  
  
-[debug] [2018-10-26T15:21:18.154Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-01T02:30:07.714Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from 'C:\Users\kbkca\OneDrive\문서\GitHub\cycleProject'...
 [info] 
 [info] i  functions: Preparing to emulate functions.
-[debug] [2018-10-26T15:21:20.033Z] Fetching environment
-[debug] [2018-10-26T15:21:20.036Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1144253737:getServerAppConfig  
+[debug] [2018-11-01T02:30:09.329Z] Fetching environment
+[debug] [2018-11-01T02:30:09.334Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1144253737:getServerAppConfig  
  
-[debug] [2018-10-26T15:21:20.037Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1144253737/clients/_:getWebAppConfig  
+[debug] [2018-11-01T02:30:09.334Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1144253737/clients/_:getWebAppConfig  
  
-[debug] [2018-10-26T15:21:20.872Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-01T02:30:10.247Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-01T02:30:10.248Z] Starting @google-cloud/functions-emulator
+[debug] [2018-11-01T02:30:10.534Z] <<< HTTP RESPONSE 200
 [info] i  hosting[pi-iot-1b450]: Serving hosting files from: public
 [info] +  hosting[pi-iot-1b450]: Local server: http://localhost:5000
-[debug] [2018-10-26T15:21:21.034Z] <<< HTTP RESPONSE 200
-[debug] [2018-10-26T15:21:21.034Z] Starting @google-cloud/functions-emulator
-[debug] [2018-10-26T15:21:25.091Z] Parsing function triggers
+[debug] [2018-11-01T02:30:13.332Z] Parsing function triggers
 [info] i  functions: No HTTPS functions found. Use firebase functions:shell if you would like to emulate other types of functions.
