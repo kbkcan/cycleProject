@@ -222,10 +222,10 @@
                                         </div>
                                     </div>
                                 </div><!-- /row mt -->
-                                <div style="border:1px solid #dedede; width:100%; height:250px; line-height:250px; color:#666;font-size:100px; text-align:center;" id="clock"><h2>00 : 00 : 00</h2></div>
+                                <div style="border:1px solid #dedede; width:100%; height:250px; line-height:250px; color:#666;font-size:100px; text-align:center;" id="clock"><span style='font-size:50px;'>00:00:00</span></div>
                                     <div class="btn-group btn-group-justified" role="group">
                                         <a  class="btn btn-success" id="startPlay" onclick="startPlay();">운동시작</a >
-                                            <a  class="btn btn-warning disabled" id="pause" onclick="pause();">일시정지</a >
+                                            <a  class="btn btn-warning disabled" id="pause">일시정지</a >
                                             <a  class="btn btn-danger disabled" id="endPlay" onclick="endPlay();">운동종료</a >
                                     </div>
                 
@@ -736,8 +736,9 @@
 
     function endPlay(){
         setTimeout(function(){
-            clearInterval(intervalID);
+            clearInterval(startInterval);
         }, 0);
+        
     }
 
     function updateFirebase(log){
@@ -749,44 +750,70 @@
         firebase.database().ref(ref+'/endTime').set(log.endAt);
         firebase.database().ref(ref+'/speed').set(log.speed);
     }
-   
-    
+   var startInterval = null;
     $('#startPlay').click(function(){
+        var startAt = new Date();
+        var btn_startPlay = document.getElementById('startPlay');
+        var btn_pause = document.getElementById('pause');
+        var btn_endPlay = document.getElementById('endPlay');
 
-    var startAt = new Date();
-    var btn_startPlay = document.getElementById('startPlay');
-    var btn_pause = document.getElementById('pause');
-    var btn_endPlay = document.getElementById('endPlay');
-
-    /*일시정지 운동 끝 버튼 활성화, 운동 시작 버튼 비 활성화*/
-    btn_startPlay.classList.add('disabled');
-    btn_pause.classList.remove('disabled');
-    btn_endPlay.classList.remove('disabled');
-    printClock(startAt);
+        /*일시정지 운동 끝 버튼 활성화, 운동 시작 버튼 비 활성화*/
+        btn_startPlay.classList.add('disabled');
+        btn_pause.classList.remove('disabled');
+        btn_endPlay.classList.remove('disabled');
+        startInterval = printClock(0);
     });
-    function printClock(startAt) {
-        setInterval(function(){
-        var clock = document.getElementById("clock");   // 출력할 장소 선택
-        
-        var timeDiff = new Date()-startAt;              // 현재시간
 
-        var hours = parseInt(timeDiff / (60*60*1000));
-        timeDiff = timeDiff % (60*60*1000);
-        var minutes = parseInt(timeDiff / (60*1000));
-        timeDiff = timeDiff % (60 * 1000);
-        var seconds = parseInt(timeDiff / 1000);
-        clock.innerHTML = "<span style='font-size:50px;'>"+addZeros(hours,2)+":"+addZeros(minutes,2)+":"+addZeros(seconds,2) +" </span>"; //날짜를 출력해 줌
-    },1000);         // 1초마다 printClock() 함수 호출
-}
+    var playTime = null;
+    function printClock(exerciseTime) {
+    
+        this.timeInterval = setInterval(function(){
+            exerciseTime = exerciseTime + 1000;
+            playTime = exerciseTime;
+            var clock = document.getElementById("clock");   // 출력할 장소 선택
+            var hours = parseInt(exerciseTime / (60*60*1000));
+            exerciseTimeh = exerciseTime % (60*60*1000);
+            var minutes = parseInt(exerciseTimeh / (60*1000));
+            exerciseTimeM = exerciseTimeh % (60 * 1000);
+            var seconds = parseInt(exerciseTimeM / 1000);
+            clock.innerHTML = "<span style='font-size:50px;'>"+addZeros(hours,2)+":"+addZeros(minutes,2)+":"+addZeros(seconds,2) +" </span>"; //날짜를 출력해 줌
+            var db_playTime = addZeros(hours,2)+":"+addZeros(minutes,2)+":"+addZeros(seconds,2)
+            
+            },1000);         // 1초마다 printClock() 함수 호출
+   
+        return timeInterval;
+    }
+
+    
+    var pauseFlag = 0  // 0 => 일시정지한 상태 , 1=> 다시 시작한 상태
      /* 일시정지버튼  클릭 시 */
-     $('#pause').click(function(){
+    $('#pause').click(function(){
         var btn_startPlay = document.getElementById('startPlay');
         var btn_pause = document.getElementById('pause');
         var btn_endPlay = document.getElementById('endPlay');
         
-        btn_startPlay.classList.remove('disabled');
-        btn_pause.classList.add('disabled');
+        btn_startPlay.classList.add('disabled');
+        btn_pause.classList.remove('disabled');
         btn_endPlay.classList.remove('disabled');
+        
+        if(pauseFlag == 0){
+            $('#pause').text('이어서하기');
+            pauseFlag = 1;
+            setTimeout(function(){
+                clearInterval(startInterval);
+            }, 0);
+        }else if(pauseFlag == 1){
+            $('#pause').text('일시정지');
+            pauseFlag =0;
+            startInterval = printClock(playTime);
+        }
+
+        //firebase애 있는 운동시간을 업데이트한다.
+        var ref ='/user/log/'+strStartAt;
+            firebase.database().ref(ref+'/exerciseTime').set(playTime);
+
+
+
     });
    
    /* 운동 종료버튼  클릭 시 */
@@ -798,6 +825,11 @@
         btn_startPlay.classList.remove('disabled');
         btn_pause.classList.add('disabled');
         btn_endPlay.classList.add('disabled');
+
+        //firebase애 있는 운동시간을 업데이트한다.
+        var ref ='/user/log/'+strStartAt;
+        firebase.database().ref(ref+'/exerciseTime').set(playTime);
+
     });
     
 
