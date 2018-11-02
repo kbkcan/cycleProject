@@ -14,7 +14,9 @@
     <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
-    
+    <link rel="stylesheet" href="assets/css/jquery.mobile-1.4.5.min.css">
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script src="assets/js/jquery.mobile-1.4.5.min.js"></script>
     <!-- Custom -->
     <script src="index.js"></script>
     <script src="fireinit.js"></script>
@@ -23,6 +25,7 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     
     <!--external css-->
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
     <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
@@ -40,9 +43,6 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="assets/css/jquery.mobile-1.4.5.min.css">
-    <script src="assets/js/jquery-1.11.1.min.js"></script>
-    <script src="assets/js/jquery.mobile-1.4.5.min.js"></script>
 
     <script>
         var selectCheck = 1;
@@ -80,19 +80,19 @@
       *********************************************************************************************************************************************************** -->
       <!--header start-->
       <header class="header black-bg" style="position: fixed;">
-        <div class="sidebar-toggle-box">
-            <div id="BTN_TOOLTIPS" class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-        </div>
-      <!--logo start-->
-      <a href="./" class="logo"><b>CYCLE DASH</b></a>
-      <!--logo end-->
-      <div class="top-menu">
-          <ul class="nav pull-right top-menu">
-              <!-- 로그아웃, 마이페이지 버튼 -->
-              <li><a id="BTN_LOGOUT" type="button" class="logout" href="#" style="display: none;">Logout</a></li>
-              <!-- <li><a id="BTN_MYPAGE" type="button" class="logout" href="#" style="display: none;">마이페이지</a></li> -->
-          </ul>
-      </div>
+              <div class="sidebar-toggle-box">
+                <div id="BTN_TOOLTIPS" class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+              </div>
+            <!--logo start-->
+            <a id="pagaeMain" href="dash.html" data-prefetch="true" data-ajax="false" class="logo"><b>CYCLE DASH</b></a>
+            <!--logo end-->
+            <div class="top-menu">
+            	<ul class="nav pull-right top-menu">
+                    <!-- 로그아웃, 마이페이지 버튼 -->
+                    <li><a id="BTN_LOGOUT" type="button" class="logout" href="#" style="display: none;">Logout</a></li>
+                    <!-- <li><a id="BTN_MYPAGE" type="button" class="logout" href="#" style="display: none;">마이페이지</a></li> -->
+            	</ul>
+            </div>
         </header>
       <!--header end-->
       
@@ -101,65 +101,64 @@
       *********************************************************************************************************************************************************** -->
       <!--sidebar start-->
       <aside>
-        <div id="sidebar"  class="nav-collapse ">
-            <!-- sidebar menu start-->
-            <ul class="sidebar-menu" id="nav-accordion">
-            
-                  <p class="centered"><a href="#"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-                  <h5 class="centered">Profile</h5>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">
+              
+                <p class="centered"><a href="#"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+                <h5 class="centered">Profile</h5>
 
-                <li class="mt"> 
-                    <a class="" href="./dash.html">
-                        <i class="fa fa-home"></i>
-                        <span>홈</span>
+              <li class="mt"> 
+                  <a id="pagaeMain2" data-prefetch="true" data-ajax="false" class="" href="dash.html">
+                      <i class="fa fa-home"></i>
+                      <span>홈</span>
+                  </a>
+              </li>
+              <li class="mt">
+                    <a id="pagaeMy"data-prefetch="true" data-ajax="false" class="" href="mypage.html">
+                        <i class="fa fa-user"></i>
+                        <span>마이페이지</span>
                     </a>
                 </li>
-                <li class="mt">
-                      <a class="" href="./mypage.html">
-                          <i class="fa fa-user"></i>
-                          <span>마이페이지</span>
-                      </a>
-                  </li>
 
                 <li class="sub-menu">
-                      <a href="./statistics.html" >
-                          <i class=" fa fa-chart-bar"></i>
-                          <span>통계</span>
-                      </a>
-                  </li>
+                    <a id="pagaeStatistics" data-prefetch="true" data-ajax="false" href="statistics.html" >
+                        <i class=" fa fa-chart-bar"></i>
+                        <span>통계</span>
+                    </a>
+                </li>
 
-                
-                <li class="sub-menu">
-                    <a href="javascript:;" >
-                        <i class="fa fa-book"></i>
-                        <span>Extra Pages</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a  href="blank.html">Blank Page</a></li>
-                        <li><a  href="login.html">Login</a></li>
-                        <li><a  href="lock_screen.html">Lock Screen</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" >
-                        <i class="fa fa-tasks"></i>
-                        <span>Forms</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a  href="form_component.html">Form Components</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" >
-                        <i class="fa fa-th"></i>
-                        <span>Data Tables</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a  href="basic_table.html">Basic Table</a></li>
-                        <li><a  href="responsive_table.html">Responsive Table</a></li>
-                    </ul>
-                </li>
-            </ul>
+              <li class="sub-menu">
+                  <a href="javascript:;" >
+                      <i class="fa fa-book"></i>
+                      <span>Extra Pages</span>
+                  </a>
+                  <ul class="sub">
+                      <li><a  data-prefetch="true" data-ajax="false" href="blank.html">Blank Page</a></li>
+                      <li><a  data-prefetch="true" data-ajax="false" href="login.html">Login</a></li>
+                      <li><a  data-prefetch="true" data-ajax="false" href="lock_screen.html">Lock Screen</a></li>
+                  </ul>
+              </li>
+              <li class="sub-menu">
+                  <a href="javascript:;" >
+                      <i class="fa fa-tasks"></i>
+                      <span>Forms</span>
+                  </a>
+                  <ul class="sub">
+                      <li><a  data-prefetch="true" data-ajax="false" href="form_component.html">Form Components</a></li>
+                  </ul>
+              </li>
+              <li class="sub-menu">
+                  <a href="javascript:;" >
+                      <i class="fa fa-th"></i>
+                      <span>Data Tables</span>
+                  </a>
+                  <ul class="sub">
+                      <li><a  data-prefetch="true" data-ajax="false" href="basic_table.html">Basic Table</a></li>
+                      <li><a  data-prefetch="true" data-ajax="false" href="responsive_table.html">Responsive Table</a></li>
+                  </ul>
+              </li>
+          </ul>
               <!-- sidebar menu end-->
           </div>
       </aside>
@@ -176,25 +175,6 @@
       RIGHT SIDEBAR CONTENT
       *********************************************************************************************************************************************************** -->
               </div><!-- /row -->
-              <div class="row">
-                <!-- TWITTER PANEL -->
-
-                <br>
-                <div class="col-md-12 col-sm-12 mb">
-                    <!-- REVENUE PANEL -->
-                    <div class="darkblue-panel pn">
-                        <div class="darkblue-header">
-                            <h5>주간 칼로리소모량</h5>
-                        </div>
-                        <div class="chart mt">
-                            <div class="sparkline" data-type="line" data-resize="true" data-height="75"
-                                data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff"
-                                data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4"
-                                data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
-                        </div>
-                    </div>
-                </div><!-- /col-md-4 -->
-            </div><!-- /row -->
               <div class="col-lg-9" style="margin-top: 5em;">
                 <select name="selectTime">
                     <option value='월별'>월별</option>
@@ -202,15 +182,43 @@
                 </select>
                 
                 <a href="#popupBaseic" data-role="none" data-position-to="window" data-rel="popup" id="selectDate" style="width:100%;">
-                    <input data-role="text" id="resultDate" type="text" readonly="true" placeholder="직접선택" name="monthText"/>
+                    <input data-role="text" id="resultDate" type="text" readonly="true" placeholder="직접선택"/>
                 </a>
+                    <input id="monthDate" type="date" placeholder="월별"/>
+                
                 <div data-role="popup"  id="popupBaseic" data-dismissible="false" >
                     <h4 align="center" style="margin-bottom: 1em;">날짜 선택</h4>
-                    <input type="text" id="searchStart" data-role="text" readonly="true" placeholder="눌러주세요"/>
-                    <input type="text" id="searchEnd" data-role="text" readonly="true" placeholder="눌러주세요" />
+                    <input type="date" id="searchStart" placeholder="시작 날짜를 눌러주세요"/>
+                    <input type="date" id="searchEnd" placeholder="끝 날짜를 눌러주세요" />
                     <a type="button" data-rel="back" data-role="button" id="sendDate" value="날짜선택 완료" style="margin: 1em 0em 1em 0em;">날짜선택완료</a>
                     <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
                 </div>
+                <script>
+                    $(document).ready(function(){
+                        if($('[name="selectTime"]').val() == '월별'){
+                            $('#resultDate').css('display', 'none');
+                            $('#monthDate').css('display', 'block');
+                        }else{
+                            $('#resultDate').css('display', 'block');
+                            $('#monthDate').css('display', 'none');
+                        }
+                    });
+                $('[name="selectTime"]').change(function(){
+                    if($('[name="selectTime"]').val() == '월별'){
+                        $('#resultDate').css('display', 'none');
+                        $('#monthDate').css('display', 'block');
+                    }else{
+                        $('#resultDate').css('display', 'block');
+                        $('#monthDate').css('display', 'none');
+                    }
+                });
+                $('#sendDate').click(function(){
+                    var searchStart = $('#searchStart').val()
+                    var searchEnd = $('#searchEnd').val()
+                    result = searchStart + searchEnd;
+                    $('#resultDate').val(result)
+                });
+                </script>
                 <a data-role="button"><i class="fas fa-search"></i> 검색</a>
                 <div class="table-responsive table--no-card m-b-40 table-style">
                     <table class="table table-borderless table-striped table-earning">
@@ -423,34 +431,6 @@
     <!-- 캘린더 스크립트 -->
     
     <script>
-        
-        mobiscroll.settings = {
-        theme: 'ios',                         // Specify theme like: theme: 'ios' or omit setting to use default
-            lang: 'ko'                        // Specify language like: lang: 'pl' or omit setting to use default
-    };
-    $(function () {
-        var pan = 1;
-        
-        var now = new Date(),
-
-        week = [now, new Date(now.getFullYear(), now.getDate() + 6, 23, 59)];            
-                $('#searchStart').mobiscroll().calendar();
-                $('#searchEnd').mobiscroll().calendar();
-                if($('#resultDate').val() == '월별'){
-                $('[name="monthText"]').mobiscroll().date({
-        
-                    dateWheels: 'MM',
-                    dateFormat: 'mm',
-
-                    minWidth: 100,
-                });
-                }
-
-            //$("#popupBaseic").css('visibility','visible');
-    
-    
-    
-    });
     $("#sendDate").click(function(){
         if($("#searchStart").val() == '' || $("#searchStart").val() == null){
             alert('검색 날짜를 입력해주세요!');
@@ -517,14 +497,34 @@
                 ]
             });
         });
-        
-        
+
         function myNavFunction(id) {
             $("#date-popover").hide();
             var nav = $("#" + id).data("navigation");
             var to = $("#" + id).data("to");
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
+        
+        // $('#pagaeMain').click(function(){
+        //     // $.mobile.changePage('dash.html');
+        //     location.href="./dash.html";
+        // });
+
+        // $('#pagaeMain2').click(function(){
+        //     // $.mobile.changePage('dash.html');
+        //     location.href="./dash.html";
+        // });
+
+        // $('#pagaeMy').click(function(){
+        //     // $.mobile.changePage('./mypage.html');
+        //     location.href="./mypage.html";
+        // });
+        
+        // $('#pagaeStatistics').click(function(){
+        //     // $.mobile.changePage('./statistics.html');
+        //     location.href="./statistics.html";
+        // });
+        
     </script>
   
 
