@@ -70,3 +70,39 @@
 [info] +  hosting[pi-iot-1b450]: Local server: http://localhost:5000
 [debug] [2018-11-01T07:04:34.506Z] Parsing function triggers
 [info] i  functions: No HTTPS functions found. Use firebase functions:shell if you would like to emulate other types of functions.
+[debug] [2018-11-02T05:05:22.240Z] ----------------------------------------------------------------------
+[debug] [2018-11-02T05:05:22.244Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\kbkca\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-11-02T05:05:22.244Z] CLI Version:   4.2.1
+[debug] [2018-11-02T05:05:22.244Z] Platform:      win32
+[debug] [2018-11-02T05:05:22.244Z] Node Version:  v8.12.0
+[debug] [2018-11-02T05:05:22.245Z] Time:          Fri Nov 02 2018 14:05:22 GMT+0900 (대한민국 표준시)
+[debug] [2018-11-02T05:05:22.245Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-11-02T05:05:22.276Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-11-02T05:05:22.277Z] > authorizing via signed-in user
+[debug] [2018-11-02T05:05:22.279Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-11-02T05:05:22.280Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+
+[debug] [2018-11-02T05:05:22.676Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-02T05:05:22.682Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/pi-iot-1b450  
+ 
+[debug] [2018-11-02T05:05:23.716Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-02T05:05:23.718Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/pi-iot-1b450  
+ 
+[debug] [2018-11-02T05:05:25.028Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\kbkca\OneDrive\문서\GitHub\cycleProject'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-11-02T05:05:26.587Z] Fetching environment
+[debug] [2018-11-02T05:05:26.590Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1144253737:getServerAppConfig  
+ 
+[debug] [2018-11-02T05:05:26.590Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1144253737/clients/_:getWebAppConfig  
+ 
+[debug] [2018-11-02T05:05:27.137Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-02T05:05:27.138Z] Starting @google-cloud/functions-emulator
+[debug] [2018-11-02T05:05:27.648Z] <<< HTTP RESPONSE 200
+[info] i  hosting[pi-iot-1b450]: Serving hosting files from: public
+[info] +  hosting[pi-iot-1b450]: Local server: http://localhost:5000
+[debug] [2018-11-02T05:05:30.224Z] Parsing function triggers
+[info] i  functions: No HTTPS functions found. Use firebase functions:shell if you would like to emulate other types of functions.
