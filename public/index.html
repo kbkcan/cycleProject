@@ -70,15 +70,15 @@
 					<a id="BTN_GOOGLE_LOGIN" class="btn btn-block btn-social btn-google">
 						<span class="fa fa-google"></span>
 						Sign in with Google
-					  </a>
-					<a id="BTN_TWITTER_LOGIN"class="btn btn-block btn-social btn-twitter">
-						<span class="fa fa-twitter"></span>
-						Sign in with Twitter
-					  </a>
-					  <a id="BTN_FACEBOOK_LOGIN" class="btn btn-block btn-social btn-facebook">
+					</a>
+					<a id="BTN_FACEBOOK_LOGIN" class="btn btn-block btn-social btn-facebook">
 						<span class="fa fa-facebook"></span>
 						Sign in with Facebook
-					  </a>
+					</a>
+					<a id="BTN_TWITTER_LOGIN" class="btn btn-block btn-social btn-twitter disabled">
+						<span class="fa fa-twitter"></span>
+						Sign in with Twitter
+					</a>
 		            </div>
 		            <div class="registration">
 		                Don't have an account yet?<br/>
@@ -239,7 +239,6 @@
 			}
 			// The signed-in user info.
 			var user = result.user;
-
 				}).catch(function(error) {
 					// Handle Errors here.
 					var errorCode = error.code;
@@ -283,9 +282,7 @@
 	/* 페이스북버튼을 눌렀을 경우 인증 동작하게 */
 	$('#BTN_FACEBOOK_LOGIN').click(function(){ // jQuery를 이용
 		/* 페이스북 인증을 provider 변수에 대체 */
-		alert("페이스북버튼 미완료");
 		var provider = new firebase.auth.FacebookAuthProvider();
-		provider.addScope('user_birthday');
 		firebase.auth().signInWithRedirect(provider);
 		firebase.auth().getRedirectResult().then(function(result) {
 			if (result.credential) {

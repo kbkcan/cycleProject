@@ -41,11 +41,10 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-        #serverstatus01{
-            width: 100% !important;
-            height: 100% !important;
-        }
-    
+    #serverstatus01{
+        width: 200px !important;
+        height: 100px !important;
+    }
     </style>
   </head>
 
@@ -99,7 +98,7 @@
               	  <h5 class="centered">Profile</h5>
 
                   <li class="mt"> 
-                      <a class="" href="./">
+                      <a class="" href="./dash.html">
                           <i class="fa fa-home"></i>
                           <span>홈</span>
                       </a>
@@ -111,18 +110,13 @@
                         </a>
                     </li>
 
-                  <li class="sub-menu">
-                        <a href="javascript:;" >
+                    <li class="sub-menu">
+                        <a href="./statistics.html" >
                             <i class=" fa fa-chart-bar"></i>
                             <span>통계</span>
                         </a>
-                        <ul class="sub">
-                            <li><a  href="morris.html">주간</a></li>
-                            <li><a  href="chartjs.html">월별</a></li>
-                        </ul>
                     </li>
 
-                  
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-book"></i>
@@ -174,52 +168,25 @@
                       			</div>
                                   <div class="row" style="display:inline-block !important;">
                                     <div class="col-xs-6">
-                                        <canvas id="serverstatus01" height="100%" width="100%"></canvas>
-                                        <script type="text/javascript">
-                                        firebase.database().ref('/user').on('value', function(snapshot) {
-                                            // firebase.database().ref('/user/testKcal').on('value', function(kcal) {
-                                            /* 
-                                                targetKcal는 목표치 칼로리 ex) 1000
-                                                startVal는 초기 변수 값 = 0
-                                                kcal 칼로리 소모 변수
-                                                addKcal는 누적 칼로리
-                                            */
-                                            kcal_parent=snapshot.val()
-                                            var targetKcal = parseFloat(kcal_parent['targetKcal']);
-                                            var addKcal = parseFloat(kcal_parent['addKcal']);
-                                            var startVal = 0;
-                                            // $('#DB_kcal').text() = addKcal + 'Kcal';
-                                            console.log(targetKcal,addKcal);
-                                            if (addKcal >= targetKcal){
-                                                alert('목표 칼로리를 달성했습니다.');
-                                                var updates = {};
-                                                updates['/user/addKcal'] = 0;
-                                                firebase.database().ref().update(updates);
-                                            }
-                                            var doughnutData = [
-                                                {   /* 100, 0 달성완료 */
-                                                    value: startVal + addKcal,
+                                        <canvas id="serverstatus01" style="width:200px; height:100px;"></canvas>
+                                        <script>
+                                                var doughnutData = [
+                                                {
+                                                    value: 0,
                                                     color: "#68dff0"
                                                 },
-        
-                                                {   /* 0, 100 칼로리 초기화 */
-                                                    value: targetKcal - addKcal,
+                            
+                                                {
+                                                    value: 100,
                                                     color: "#444c57"
                                                 }
                                             ];
-                                            // var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
-                                            var myDoughnut = document.getElementById("serverstatus01");
-                                            myDoughnut.fillText();
-                                            var ctx = canvas.getContext("2d");
-                                            // ctx.font = '30px Arial';
-                                            // ctx.fillText("Hello World", 10, 50);
-                                            // ctx.
-                                        // });
-                                    });
+                                                var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
                                         </script>
                                     </div>
                                     <div class="col-xs-6" style="text-align: center; padding-top:13%;"> 
-                                        <div style="color: #989898;" class="figure"><i class="fa fa-fire" style="font-size:1em"></i><span id="DB_kcal" style="font-size:1.1em; margin-left:5px;">627</span>Kcal</div>
+                                        <div style="color: #989898;" class="figure"><i class="fa fa-fire" style="font-size:1em"></i><span id="DB_kcal" style="font-size:1.1em; margin-left:5px;">0</span>
+                                            <span style="font-size:1.1em;">Kcal</span></div>
                                     </div>
                                 </div>
                             </div><!-- /col-md-4 -->
@@ -230,246 +197,38 @@
                                         <div class="box1 stat">
                                             <div>심박수</div>
                                             <span class="fa fa-heartbeat stat-img"></span>
-                                            <div  style="font-size:1em; font-weight: bold;"><span style="font-size:1em; font-weight: bold; margin-top:14px;" id="DB_BPM">90</span>BPM</div>
+                                            <div  style="font-size:1em; font-weight: bold;"><span style="font-size:1em; font-weight: bold; margin-top:14px;" id="DB_BPM">0</span>BPM</div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-4 box0">
                                         <div class="box1 stat">
                                             <div>평균속도</div>
                                             <span class="fab fa-cloudscale stat-img"></span>
-                                            <div style="font-size:1em; font-weight: bold;"><span style="font-size:1em; font-weight: bold; margin-top:14px;" id="DB_speed">20</span>Km/h</span></div>
+                                            <div style="font-size:1em; font-weight: bold;"><span style="font-size:1em; font-weight: bold; margin-top:14px;" id="DB_speed">0</span>Km/h</span></div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-4 box0">
                                         <div class="box1 stat">
                                             <div>거리</div>
                                             <span class="fas fa-bicycle stat-img"></span>
-                                            <div style="font-size:1em; font-weight: bold;"><span style="font-size:1em; font-weight: bold; margin-top:14px;" id="DB_distance">30</span>Km</div>
+                                            <div style="font-size:1em; font-weight: bold;"><span style="font-size:1em; font-weight: bold; margin-top:14px;" id="DB_distance">0</span>Km</div>
                                         </div>
                                     </div>
                                 </div><!-- /row mt -->
+                                <div style="border:1px solid #dedede; width:100%; height:250px; line-height:250px; color:#666;font-size:100px; text-align:center;" id="clock"><span style='font-size:50px;'>00:00:00</span></div>
                                 <br>
-                                <div style="border:1px solid #dedede; width:100%; height:250px; line-height:250px; color:#666;font-size:100px; text-align:center;" id="clock"><h2>0 : 0 : 0</h2></div>
                                     <div class="btn-group btn-group-justified" role="group">
-                                        <a  class="btn btn-success" id="startPlay" onclick="startPlay();">운동시작</a >
-                                        <a  class="btn btn-warning disabled" id="pause" onclick="pause();">일시정지</a >
-                                        <a  class="btn btn-danger disabled" id="endPlay" onclick="endPlay();">운동종료</a >
+                                        <a  class="btn btn-lg btn-success" id="startPlay" onclick="startPlay();">운동시작</a >
+                                        <a  class="btn btn-lg btn-warning disabled" id="pause">일시정지</a >
+                                        <a  class="btn btn-lg btn-danger disabled" id="endPlay" onclick="endPlay();">운동종료</a >
                                     </div>
-                
-                                <div class="row">
-                                    <!-- TWITTER PANEL -->
-        
-        
-                                    <div class="col-md-12 col-sm-12 mb">
-                                        <!-- REVENUE PANEL -->
-                                        <div class="darkblue-panel pn">
-                                            <div class="darkblue-header">
-                                                <h5>주간 칼로리소모량</h5>
-                                            </div>
-                                            <div class="chart mt">
-                                                <div class="sparkline" data-type="line" data-resize="true" data-height="75"
-                                                    data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff"
-                                                    data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4"
-                                                    data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
-                                            </div>
-                                        </div>
-                                    </div><!-- /col-md-4 -->
-        
-                                </div><!-- /row -->
-        
                             </div><!-- /col-lg-9 END SECTION MIDDLE -->
-                  
-                  
-      <!-- **********************************************************************************************************************************************************
-      RIGHT SIDEBAR CONTENT
-      *********************************************************************************************************************************************************** -->
-              </div><!-- /row -->
-              <div class="col-lg-9">
-                <h2 class="title-1 m-b-25">Earnings By Items</h2>
-                <div class="table-responsive table--no-card m-b-40">
-                    <table class="table table-borderless table-striped table-earning">
-                        <thead>
-                            <tr>
-                                <th>날짜</th>
-                                <th>목표(Kcal)</th>
-                                <th>소모(Kcal)</th>
-                                <th class="text-right">달성률</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2018-09-29 05:57</td>
-                                <td>1000</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-
-                            </tr>
-                            <tr>
-                                <td>2018-09-28 01:22</td>
-                                <td>1000</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-
-                            </tr>
-                            <tr>
-                                <td>2018-09-27 02:12</td>
-                                <td>1000</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-
-                            </tr>
-                            <tr>
-                                <td>2018-09-26 23:06</td>
-                                <td>1000</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-
-                            </tr>
-                            <tr>
-                                <td>2018-09-25 19:03</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-
-                            </tr>
-                            <tr>
-                                <td>2018-09-29 05:57</td>
-                                <td>100392</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-
-                            </tr>
-                            <tr>
-                                <td>2018-09-24 19:10</td>
-                                <td>100391</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                            <tr>
-                                <td>2018-09-22 00:43</td>
-                                <td>100393</td>
-                                <td>3000</td>
-                                <td class="text-right">300%</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-          </section>
-      </section>
-
-      <!--main content end-->
-  </section>
+                        </div><!-- /row -->   
+                    </div>
+                </section>
+            </section>
+            <!--main content end-->
+        </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
@@ -507,7 +266,6 @@
             // (string | optional) the class name you want to apply to that specific message
             class_name: 'my-sticky-class'
         });
-
         return false;
         });
 	</script> -->
@@ -554,194 +312,259 @@
     <script src="calCount.js"></script>
     <script type="text/javascript"> 
     /* 파이어 베이스 인증 */
-    firebase.auth().onAuthStateChanged(function(user) {
-    if (user) { // 인증되었을 때
-      $('#AUTH_STATE').text(user.displayName + "님 로그인 하셨습니다.");
-      $('#BTN_LOGOUT').show();
-      $('#BTN_MYPAGE').show();
-      $('#USER_NAME').text(user.displayName);
-      $('#USER_MAIL').text(user.email);
-      $('#USER_UID').text(user.uid);
-      $('#USER_PHOTO').attr('src', user.photoURL);
-      $('#USER_INFO').show();
-    //   $('#BTN_TOOLTIPS').trigger('click');
-
-      /* TODO 1. DB에서 '/user/addKcal'값 읽어오기 */
-      firebase.database().ref('/user/addKcal').on('value', function(snapshot) {
-           //debugger;
-           var message = snapshot.val();
-           messsage= message+'BPM'
-           $("#DB_kcal").text(message);
-       });
-
-       firebase.database().ref('/user/BPM').on('value', function(snapshot) {
-            //debugger;
-            var message = snapshot.val();
-            $("#DB_BPM").text(message);
-        });
-    } else { // 인증되지 않았을 때
-      $('#AUTH_STATE').text("(인증되지 않음)");
-      $('#BTN_LOGOUT').hide();
-      $('#USER_INFO').hide();
-    }
-  });
-
-  function User(weight,bike){
-       this.weight = weight;
-       this.bike = bike;
-   };
-
-   function Log(){
-       this.endAt = null;
-       this.startAt = null;
-       this.distance = 0;
-       this.kcal = 0;
-       this.indice = 0;
-       this.speed = 0;
-   };
-
-   function playing(log,user) {
-       setInterval(function () {
-           firebase.database().ref('/user').once('value').then(function(snapshot) {
-           data = snapshot.val();
-           console.log(log);
-           console.log(data);   
-           var cycleCount = parseInt(data['cycleCount']);
-           log.endAt = new Date();
-
-           //거리를 계산한다.
-           log.distance = calDistance(user,cycleCount);
-           $("#DB_distance").text(log.distance.toFixed(2));
-           
-           //속도를 구한다.
-           log.speed = calSpeed(log);
-           $("#DB_speed").text(log.speed.toFixed(2));
-           console.log(cycleCount,'회 회전',log.distance,'M',log.speed,'km/h');
-           });
-       }, 10000);
-   };
-
-   function calKcal(log,user,cycleCount){
-       //칼로리(kcal) = (몸무게 + 자전거무게) * 평속에 따른 소모열량지수 * 운동시간(분)
-       log.speed = getSpeed(log);
-       log.indice = getIndice(log.speed);
-       log.kcal = (this.user.weight + this.user.bike.bike_weight) * this.indice * ((this.startAt - this.endAt)/60); 
-       return log;
-   };
-
-   function calSpeed(log){
-       var endAt = new Date();
-       var speed = log.distance/((endAt - log.startAt)/(60/1000));
-       console.log('speed',speed);
-       return speed;
-   };
-
-   function calDistance(user,cycleCount){
-       if(cycleCount == 0){
-           console.log('자전거 바퀴가 한번도 회전하지 않았어');
-       }else{
-           distance = cycleCount * Math.PI *((user.bike.diameter/1000)/1000);
-           return distance;
-       }
-   };
-
-   function calIndice(speed){
-       if(speed <= 12.9){
-           this.indice = 0.065;
-       }else if(speed > 12.9 && speed <= 16.1){
-           this.indice = 0.0783;
-       }else if(speed > 16.1 && speed <= 19.3){
-           this.indice = 0.0939;
-       }else if(speed > 19.3 && speed <= 22.5){
-           this.indice = 0.1129;
-       }else if(speed > 22.5 && speed <= 24.1){
-           this.indice = 0.01237;
-       }else if(speed > 24.1 && speed <= 25.7){
-           this.indice = 0.1356;
-       }else if(speed > 27.4 && speed <= 29){
-           this.indice = 0.1488;
-       }else if(speed > 29 && speed <= 30.6){
-           this.indice = 0.1631;
-       }else if(speed > 30.6 && speed <= 32.2){
-           this.indice = 0.1788;
-       }else if(speed > 32.2 && speed <= 33.8){
-           this.indice = 0.1964;
-       }else if(speed > 33.8 && speed <= 37){
-           this.indice = 0.215;
-       }else if(speed > 37 && speed <= 40.2){
-           this.indice = 0.2586;
-       }else{
-           this.indice = 0.3111;
-       }
-   };
-
-   function Bike(diameter,bike_weight){
-       this.bike_weight = weight;
-       this.diameter = diameter;
-   }
-
-   function startPlay(){
-       //cycleCount를 초기화 한다.
-       firebase.database().ref('/user/cycleCount').set(0);
-       
-       //startTime의 log값을 만든다.
-       var startAt = new Date();
-       strStartAt = dateToString(startAt);
-       var ref ='/user/log/'+strStartAt;
-       firebase.database().ref(ref+'/distance').set(0);
-       firebase.database().ref(ref+'/kcal').set(0);
-       firebase.database().ref(ref+'/endTime').set(0);
-       firebase.database().ref(ref+'/avgSpeed').set(0);
-       firebase.database().ref('/user').once('value').then(function(snapshot) {
-           data = snapshot.val();    
-           var newUser = new User();
-           newUser.weight= data['weight'];
-           newUser.bike = data['bike'];  
-           var newLog = new Log();
-           newLog.user=newUser;
-           newLog.startAt=startAt;
-           playing(newLog,newUser);
-       });
-   }
    
-   function dateToString(date)
-   {
-       this.yyyy = date.getFullYear().toString();
-       this.MM = (date.getMonth() + 1).toString();
-       this.dd = date.getDate().toString();
-       this.hh = date.getHours().toString();
-       this.mm = date.getMinutes().toString();
-       this.ss = date.getSeconds().toString();
-       return yyyy + (MM[1] ? MM : '0'+ MM[0]) + (dd[1] ? dd : '0'+dd[0])+(hh[1] ? hh : '0'+hh[0])+(mm[1] ? mm : '0'+mm[0])+(ss[1] ? ss : '0'+ss[0]);
-   }
-
-   function endPlay(){
-       
-   }
-
-   /* 운동 시작버튼 클릭 시 */
-     $('#startPlay').click(function(){
-       var startAt = new Date();
-       var btn_startPlay = document.getElementById('startPlay');
-       var btn_pause = document.getElementById('pause');
-       var btn_endPlay = document.getElementById('endPlay');
-       printClock(startAt);
-
-       /*일시정지 운동 끝 버튼 활성화, 운동 시작 버튼 비 활성화*/
-       btn_startPlay.classList.add('disabled');
-       btn_pause.classList.remove('disabled');
-       btn_endPlay.classList.remove('disabled');
-   });
-
-   /* 일시정지버튼  클릭 시 */
+    firebase.auth().onAuthStateChanged(function (user) {
+            if (user) { // 인증되었을 때
+                $('#AUTH_STATE').text(user.displayName + "님 로그인 하셨습니다.");
+                $('#BTN_LOGOUT').show();
+                $('#USER_NAME').text(user.displayName);
+                $('#USER_MAIL').text(user.email);
+                $('#USER_UID').text(user.uid);
+                $('#USER_PHOTO').attr('src', user.photoURL);
+                $('#USER_INFO').show();
+            } else { // 인증되지 않았을 때
+                $('#AUTH_STATE').text("(인증되지 않음)");
+                $('#BTN_LOGOUT').hide();
+                $('#USER_INFO').hide();
+            }
+        });
+        // /* TODO 2. DB에서 '/메세지'값 읽어오기 */
+        firebase.database().ref('/user/BPM').on('value', function(snapshot) {
+                //debugger;
+                var message = snapshot.val();
+                messsage= message+'BPM'
+                $("#DB_BPM").text(message);
+        });
+    function User(weight,bike){
+        this.weight = weight;
+        this.bike = bike;
+    };
+    
+    function Log(){
+        this.endAt = null;
+        this.startAt = null;
+        this.distance = 0;
+        this.kcal = 0;
+        this.indice = 0;
+        this.speed = 0;
+        this.sumKcal = 0;
+        this.sumDistance = 0;
+    };
+  
+    
+    function calKcal(log,user,cycleCount){
+        //칼로리(kcal) = (몸무게 + 자전거무게) * 평속에 따른 소모열량지수 * 운동시간(분)
+        var kcal = (user.weight + user.bike.bike_weight) * log.indice * (1/6);
+        return kcal;
+    };
+    function calSpeed(log){
+        var speed = log.distance/(1/360);
+        //10초 = > 1/6 분 => (1/6)*(60)
+        return speed;
+    };
+    function calDistance(user,cycleCount){
+        distance = cycleCount * Math.PI *((user.bike.diameter/1000)/1000);
+        return distance;
+    };
+    function calIndice(speed){
+        if(speed<4){
+            return 0;
+        }else if(speed >= 4 && speed <= 12.9){
+            return 0.065;
+        }else if(speed > 12.9 && speed <= 16.1){
+            return 0.0783;
+        }else if(speed > 16.1 && speed <= 19.3){
+            return 0.0939;
+        }else if(speed > 19.3 && speed <= 22.5){
+            return 0.1129;
+        }else if(speed > 22.5 && speed <= 24.1){
+            return 0.01237;
+        }else if(speed > 24.1 && speed <= 25.7){
+            return 0.1356;
+        }else if(speed > 27.4 && speed <= 29){
+            return 0.1488;
+        }else if(speed > 29 && speed <= 30.6){
+            return 0.1631;
+        }else if(speed > 30.6 && speed <= 32.2){
+            return 0.1788;
+        }else if(speed > 32.2 && speed <= 33.8){
+            return 0.1964;
+        }else if(speed > 33.8 && speed <= 37){
+            return 0.215;
+        }else if(speed > 37 && speed <= 40.2){
+            return 0.2586;
+        }else{
+            return 0.3111;
+        }
+    };
+    function Bike(diameter,bike_weight){
+        this.bike_weight = weight;
+        this.diameter = diameter;
+    }
+  
+    function startPlay(){
+        //cycleCount를 초기화 한다.
+        firebase.database().ref('/user/sumCycleCount').set(0);
+        firebase.database().ref('/user/startFlag').set(1);
+        //startTime의 log값을 만든다.
+        var startAt = new Date();
+        strStartAt = dateToString(startAt);
+        firebase.database().ref('/user').once('value').then(function(snapshot) {
+            data = snapshot.val();    
+            var newUser = new User();
+            newUser.weight= data['weight'];
+            newUser.bike = data['bike'];  
+            var newLog = new Log();
+            newLog.startAt=startAt;
+            log = newLog;
+            playing(newLog,newUser);
+        });
+    }
+    
+    function dateToString(date)
+    {
+        this.yyyy = date.getFullYear().toString();
+        this.MM = (date.getMonth() + 1).toString();
+        this.dd = date.getDate().toString();
+        this.hh = date.getHours().toString();
+        this.mm = date.getMinutes().toString();
+        this.ss = date.getSeconds().toString();
+        return yyyy + (MM[1] ? MM : '0'+ MM[0]) + (dd[1] ? dd : '0'+dd[0])+(hh[1] ? hh : '0'+hh[0])+(mm[1] ? mm : '0'+mm[0])+(ss[1] ? ss : '0'+ss[0]);
+    }
+    
+    var intervalId = null;  
+    function playing(log,user) {
+        var initialCycle = 0;
+        firebase.database().ref('/user/sumCycleCount').once('value').then(function(snapshot) {
+            data = snapshot.val();  
+            initialCycle = data;
+        });
+        intervalId = setInterval(function () {
+            firebase.database().ref('/user').once('value').then(function(snapshot) {
+            data = snapshot.val();  
+            var sumCycleCount = parseInt(data['sumCycleCount']);
+            var tenSecCycleCount = sumCycleCount - initialCycle;
+            var targetKcal = parseInt(data['targetKcal']);
+            
+            if(tenSecCycleCount != 0){
+                //거리를 계산한다.
+                log.distance=calDistance(user,tenSecCycleCount);
+                log.sumDistance =log.sumDistance + log.distance; 
+                $("#DB_distance").text(log.sumDistance.toFixed(2));
+                
+                
+                //속도를 구한다.
+                log.endAt = new Date();
+                log.speed = calSpeed(log);
+                $("#DB_speed").text(log.speed.toFixed(2));
+                //평균속도별 칼로리계수를 구한다.
+                log.indice = calIndice(log.speed);
+                    
+                //칼로리를 구한다.
+                log.kcal = calKcal(log,user,tenSecCycleCount);
+                
+                log.sumKcal = log.sumKcal+log.kcal;
+                log.kcal = 0;
+                $('#DB_kcal').text(log.sumKcal.toFixed(3));
+                initialCycle = sumCycleCount;
+                var donutA = (log.sumKcal/targetKcal)*100;
+                var donutB = 100-donutA;
+                if(donutB<=0){
+                    alert('목표칼로리를 달성하셨습니다.');
+                    window.location.reload();
+                }
+                console.log(donutA,donutB);
+                //firebase log를 업데이트 함
+                updateFirebase(log);
+                var doughnutData = [
+                {
+                    value:donutA,
+                    color: "#68dff0"
+                },
+                {
+                    value: donutB,
+                    color: "#444c57"
+                }
+            ];
+                var myDoughnut = new Chart(document.getElementById("serverstatus01").getContext("2d")).Doughnut(doughnutData);
+            }else{
+                $("#DB_speed").text(0);
+            }
+            });
+        }, 10000);
+    };
+    function endPlay(){
+        setTimeout(function(){
+            clearInterval(startInterval);
+        }, 0);
+        
+    }
+    function updateFirebase(log){
+        console.log(log)
+        var startTime = dateToString(log.startAt);
+        var ref ='/user/log/'+strStartAt;
+        firebase.database().ref(ref+'/distance').set(log.sumDistance);
+        firebase.database().ref(ref+'/kcal').set(log.sumKcal);
+        firebase.database().ref(ref+'/endTime').set(log.endAt);
+        firebase.database().ref(ref+'/speed').set(log.speed);
+    }
+   var startInterval = null;
+    $('#startPlay').click(function(){
+        var startAt = new Date();
+        var btn_startPlay = document.getElementById('startPlay');
+        var btn_pause = document.getElementById('pause');
+        var btn_endPlay = document.getElementById('endPlay');
+        /*일시정지 운동 끝 버튼 활성화, 운동 시작 버튼 비 활성화*/
+        btn_startPlay.classList.add('disabled');
+        btn_pause.classList.remove('disabled');
+        btn_endPlay.classList.remove('disabled');
+        startInterval = printClock(0);
+    });
+    var playTime = null;
+    function printClock(exerciseTime) {
+    
+        this.timeInterval = setInterval(function(){
+            exerciseTime = exerciseTime + 1000;
+            playTime = exerciseTime;
+            var clock = document.getElementById("clock");   // 출력할 장소 선택
+            var hours = parseInt(exerciseTime / (60*60*1000));
+            exerciseTimeh = exerciseTime % (60*60*1000);
+            var minutes = parseInt(exerciseTimeh / (60*1000));
+            exerciseTimeM = exerciseTimeh % (60 * 1000);
+            var seconds = parseInt(exerciseTimeM / 1000);
+            clock.innerHTML = "<span style='font-size:50px;'>"+addZeros(hours,2)+":"+addZeros(minutes,2)+":"+addZeros(seconds,2) +" </span>"; //날짜를 출력해 줌
+            var db_playTime = addZeros(hours,2)+":"+addZeros(minutes,2)+":"+addZeros(seconds,2)
+            
+            },1000);         // 1초마다 printClock() 함수 호출
+   
+        return timeInterval;
+    }
+    
+    var pauseFlag = 0  // 0 => 일시정지한 상태 , 1=> 다시 시작한 상태
+     /* 일시정지버튼  클릭 시 */
     $('#pause').click(function(){
         var btn_startPlay = document.getElementById('startPlay');
         var btn_pause = document.getElementById('pause');
         var btn_endPlay = document.getElementById('endPlay');
         
-        btn_startPlay.classList.remove('disabled');
-        btn_pause.classList.add('disabled');
+        btn_startPlay.classList.add('disabled');
+        btn_pause.classList.remove('disabled');
         btn_endPlay.classList.remove('disabled');
+        
+        if(pauseFlag == 0){
+            $('#pause').text('이어서하기');
+            pauseFlag = 1;
+            setTimeout(function(){
+                clearInterval(startInterval);
+            }, 0);
+        }else if(pauseFlag == 1){
+            $('#pause').text('일시정지');
+            pauseFlag =0;
+            startInterval = printClock(playTime);
+        }
+        //firebase애 있는 운동시간을 업데이트한다.
+        var ref ='/user/log/'+strStartAt;
+            firebase.database().ref(ref+'/exerciseTime').set(playTime);
     });
    
    /* 운동 종료버튼  클릭 시 */
@@ -753,33 +576,21 @@
         btn_startPlay.classList.remove('disabled');
         btn_pause.classList.add('disabled');
         btn_endPlay.classList.add('disabled');
+        //firebase애 있는 운동시간을 업데이트한다.
+        var ref ='/user/log/'+strStartAt;
+        firebase.database().ref(ref+'/exerciseTime').set(playTime);
     });
     
-      function printClock(startAt) {
-           setInterval(function(){
-           var clock = document.getElementById("clock");   // 출력할 장소 선택
-           
-           var timeDiff = new Date()-startAt;              // 현재시간
-
-           var hours = parseInt(timeDiff / (60*60*1000));
-           timeDiff = timeDiff % (60*60*1000);
-           var minutes = parseInt(timeDiff / (60*1000));
-           timeDiff = timeDiff % (60 * 1000);
-           var seconds = parseInt(timeDiff / 1000); 
-           clock.innerHTML = "<span style='font-size:50px;'>"+hours+":"+minutes+":"+seconds +" </span>"; //날짜를 출력해 줌
-           },1000);         // 1초마다 printClock() 함수 호출
-       }
-
-       function addZeros(num, digit) { // 자릿수 맞춰주기
-           var zero = '';
-           num = num.toString();
-           if (num.length < digit) {
-               for (i = 0; i < digit - num.length; i++) {
-               zero += '0';
-               }
-           }
-           return zero + num;
-       }
+function addZeros(num, digit) { // 자릿수 맞춰주기
+    var zero = '';
+    num = num.toString();
+    if (num.length < digit) {
+        for (i = 0; i < digit - num.length; i++) {
+        zero += '0';
+        }
+    }
+    return zero + num;
+}
    
    /* 로그아웃 버튼을 눌렀을 때 인증 해제 하도록 하기 */
    $('#BTN_LOGOUT').click(function(){

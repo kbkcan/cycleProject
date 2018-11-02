@@ -8,20 +8,27 @@
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
     <title>CYCLE DASH</title>
+
+    <!-- TODO 1. firebase SDK 링크 -->
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
     
+    <!-- Custom -->
+    <script src="index.js"></script>
+    <script src="fireinit.js"></script>
+
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     
     <!--external css-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
-    
-    
     <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
     <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
     <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/theme.css">
 
-    
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
@@ -37,7 +44,32 @@
     <script src="assets/js/jquery-1.11.1.min.js"></script>
     <script src="assets/js/jquery.mobile-1.4.5.min.js"></script>
 
+    <script>
+        var selectCheck = 1;
+        $(document).ready(function(){
+            if($('[name="selectTime"]').val() == '직접선택'){
+                $('[name="monthText"]').attr('name','123');
+                $('#selectDate').attr('href','#popupBaseic');
+                $('#resultDate').attr('placeholder','직접선택');
+            }else{
+                $('[name="123"]').attr('name','monthText');
+                $('#selectDate').attr('href','#123');
+                $('#resultDate').attr('placeholder','월별');
+            }
+            $('[name="selectTime"]').change(function(){
+                if($('[name="selectTime"]').val() == '직접선택'){
+                    $('[name="monthText"]').attr('name','123');
+                    $('#selectDate').attr('href','#popupBaseic');
+                    $('#resultDate').attr('placeholder','직접선택');
+                }else{
+                    $('[name="123"]').attr('name','monthText');
+                    $('#selectDate').attr('href','#123');
+                    $('#resultDate').attr('placeholder','월별');
+                }
+            });
+        });
     
+    </script>
   </head>
 
   <body>
@@ -48,18 +80,19 @@
       *********************************************************************************************************************************************************** -->
       <!--header start-->
       <header class="header black-bg" style="position: fixed;">
-              <div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-              </div>
-            <!--logo start-->
-            <a href="index.html" class="logo header-text"><b>CYCLE DASH</b></a>
-            <!--logo end-->
-            <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="login.html"><b>로그아웃</b></a></li>
-                    <li><a class="logout" href="#"><b>마이페이지</b></a></li>
-            	</ul>
-            </div>
+        <div class="sidebar-toggle-box">
+            <div id="BTN_TOOLTIPS" class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+        </div>
+      <!--logo start-->
+      <a href="./" class="logo"><b>CYCLE DASH</b></a>
+      <!--logo end-->
+      <div class="top-menu">
+          <ul class="nav pull-right top-menu">
+              <!-- 로그아웃, 마이페이지 버튼 -->
+              <li><a id="BTN_LOGOUT" type="button" class="logout" href="#" style="display: none;">Logout</a></li>
+              <!-- <li><a id="BTN_MYPAGE" type="button" class="logout" href="#" style="display: none;">마이페이지</a></li> -->
+          </ul>
+      </div>
         </header>
       <!--header end-->
       
@@ -68,71 +101,65 @@
       *********************************************************************************************************************************************************** -->
       <!--sidebar start-->
       <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
-              
-              	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">Profile</h5>
-              	  	
-                  <li class="mt">
-                      <a class="" href="#">
-                          <i class="fa fa-home"></i>
-                          <span>홈</span>
-                      </a>
-                  </li>
-                  <li class="mt">
-                        <a class="" href="#">
-                            <i class="fa fa-user"></i>
-                            <span>마이페이지</span>
-                        </a>
-                    </li>
+        <div id="sidebar"  class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+            
+                  <p class="centered"><a href="#"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+                  <h5 class="centered">Profile</h5>
 
-                  <li class="sub-menu">
-                        <a href="javascript:;" >
-                            <i class=" fa fa-bar-chart-o"></i>
-                            <span>통계</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a  href="morris.html">주간</a></li>
-                            <li><a  href="chartjs.html">월별</a></li>
-                        </ul>
-                    </li>
+                <li class="mt"> 
+                    <a class="" href="./dash.html">
+                        <i class="fa fa-home"></i>
+                        <span>홈</span>
+                    </a>
+                </li>
+                <li class="mt">
+                      <a class="" href="./mypage.html">
+                          <i class="fa fa-user"></i>
+                          <span>마이페이지</span>
+                      </a>
+                  </li>
 
-                  
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>Extra Pages</span>
+                <li class="sub-menu">
+                      <a href="./statistics.html" >
+                          <i class=" fa fa-chart-bar"></i>
+                          <span>통계</span>
                       </a>
-                      <ul class="sub">
-                          <li><a  href="blank.html">Blank Page</a></li>
-                          <li><a  href="login.html">Login</a></li>
-                          <li><a  href="lock_screen.html">Lock Screen</a></li>
-                      </ul>
                   </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-tasks"></i>
-                          <span>Forms</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="form_component.html">Form Components</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-th"></i>
-                          <span>Data Tables</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="basic_table.html">Basic Table</a></li>
-                          <li><a  href="responsive_table.html">Responsive Table</a></li>
-                      </ul>
-                  </li>
-                  
 
-              </ul>
+                
+                <li class="sub-menu">
+                    <a href="javascript:;" >
+                        <i class="fa fa-book"></i>
+                        <span>Extra Pages</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a  href="blank.html">Blank Page</a></li>
+                        <li><a  href="login.html">Login</a></li>
+                        <li><a  href="lock_screen.html">Lock Screen</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" >
+                        <i class="fa fa-tasks"></i>
+                        <span>Forms</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a  href="form_component.html">Form Components</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" >
+                        <i class="fa fa-th"></i>
+                        <span>Data Tables</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a  href="basic_table.html">Basic Table</a></li>
+                        <li><a  href="responsive_table.html">Responsive Table</a></li>
+                    </ul>
+                </li>
+            </ul>
               <!-- sidebar menu end-->
           </div>
       </aside>
@@ -149,14 +176,34 @@
       RIGHT SIDEBAR CONTENT
       *********************************************************************************************************************************************************** -->
               </div><!-- /row -->
+              <div class="row">
+                <!-- TWITTER PANEL -->
+
+                <br>
+                <div class="col-md-12 col-sm-12 mb">
+                    <!-- REVENUE PANEL -->
+                    <div class="darkblue-panel pn">
+                        <div class="darkblue-header">
+                            <h5>주간 칼로리소모량</h5>
+                        </div>
+                        <div class="chart mt">
+                            <div class="sparkline" data-type="line" data-resize="true" data-height="75"
+                                data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff"
+                                data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4"
+                                data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
+                        </div>
+                    </div>
+                </div><!-- /col-md-4 -->
+            </div><!-- /row -->
               <div class="col-lg-9" style="margin-top: 5em;">
                 <select name="selectTime">
                     <option value='월별'>월별</option>
-                    <option value='주별'>주별</option>
                     <option value='직접선택'>직접선택</option>
                 </select>
-                <input data-role="text" id="resultDate" type="text" readonly="true" placeholder="직접선택" readonly="true" />
-                <a href="#popupBaseic" data-role="button" data-position-to="window" data-rel="popup" id="selectDate">날짜선택</a>
+                
+                <a href="#popupBaseic" data-role="none" data-position-to="window" data-rel="popup" id="selectDate" style="width:100%;">
+                    <input data-role="text" id="resultDate" type="text" readonly="true" placeholder="직접선택" name="monthText"/>
+                </a>
                 <div data-role="popup"  id="popupBaseic" data-dismissible="false" >
                     <h4 align="center" style="margin-bottom: 1em;">날짜 선택</h4>
                     <input type="text" id="searchStart" data-role="text" readonly="true" placeholder="눌러주세요"/>
@@ -165,7 +212,7 @@
                     <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
                 </div>
                 <a data-role="button"><i class="fas fa-search"></i> 검색</a>
-                <div class="table-responsive table--no-card m-b-40">
+                <div class="table-responsive table--no-card m-b-40 table-style">
                     <table class="table table-borderless table-striped table-earning">
                         <thead>
                             <tr>
@@ -382,8 +429,27 @@
             lang: 'ko'                        // Specify language like: lang: 'pl' or omit setting to use default
     };
     $(function () {
-    $('#searchStart').mobiscroll().calendar();
-    $('#searchEnd').mobiscroll().calendar();
+        var pan = 1;
+        
+        var now = new Date(),
+
+        week = [now, new Date(now.getFullYear(), now.getDate() + 6, 23, 59)];            
+                $('#searchStart').mobiscroll().calendar();
+                $('#searchEnd').mobiscroll().calendar();
+                if($('#resultDate').val() == '월별'){
+                $('[name="monthText"]').mobiscroll().date({
+        
+                    dateWheels: 'MM',
+                    dateFormat: 'mm',
+
+                    minWidth: 100,
+                });
+                }
+
+            //$("#popupBaseic").css('visibility','visible');
+    
+    
+    
     });
     $("#sendDate").click(function(){
         if($("#searchStart").val() == '' || $("#searchStart").val() == null){
@@ -392,19 +458,17 @@
         else if($("#searchEnd").val() == '' || $("#searchEnd").val() == null){
             alert('검색 날짜를 입력해주세요!');
         }
-        else{
+        
             var searchStart = $("#searchStart").val();
             var searchEnd = $("#searchEnd").val();
             result = searchStart+" ~ "+searchEnd;
             $("#resultDate").val(result);
             $("#sendDate").attr('data-rel','back');
             //$("#popupBaseic").css('visibility','hidden');
-     }
+    
             
         });
-        $("#selectDate").click(function(){
-            //$("#popupBaseic").css('visibility','visible');
-        });
+       
     </script>
 	
 	<!-- <script type="text/javascript">
