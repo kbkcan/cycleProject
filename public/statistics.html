@@ -16,7 +16,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
     <link rel="stylesheet" href="assets/css/jquery.mobile-1.4.5.min.css">
     <script src="assets/js/jquery-1.11.1.min.js"></script>
-    <script src="assets/js/jquery.mobile-1.4.5.min.js"></script>
+    <!-- <script src="assets/js/jquery.mobile-1.4.5.min.js"></script> -->
     <!-- Custom -->
     <script src="index.js"></script>
     <script src="fireinit.js"></script>
@@ -187,10 +187,11 @@
                             <h5>주간 칼로리소모량</h5>
                         </div>
                         <div class="chart mt">
-                            <div class="sparkline" data-type="line" data-resize="true" data-height="75"
+                            <div id="weekData" class="sparkline" data-type="line" data-resize="true" data-height="75"
                                 data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff"
                                 data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4"
-                                data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
+                                data-data=""
+                                ></div>
                         </div>
                     </div>
                 </div><!-- /col-md-4 -->
@@ -242,18 +243,11 @@
                 });
                 </script>
                 <a data-role="button"><i class="fas fa-search"></i> 검색</a>
+
+                <input type="month" id="INPUT_MONTH" placeholder="날짜 입력" value = '2018-10' />
+                <a id="BTN_SEARCH" type="button"><i class="fas fa-search"></i> Test 검색</a>
                 <div class="table-responsive table--no-card m-b-40 table-style">
-                    <table class="table table-borderless table-striped table-earning">
-                        <thead>
-                            <tr>
-                                <th>날짜</th>
-                                <th>목표(Kcal)</th>
-                                <th>소모(Kcal)</th>
-                                <th class="text-right">달성률</th>
-                            </tr>
-                        </thead>
-                        <tbody id="TABLE_STATISTICS">
-                        </tbody>
+                    <table id="TABLE_STATISTICS" class="table table-borderless table-striped table-earning">
                     </table>
                 </div>
             </div>
@@ -355,34 +349,123 @@
                 ]
             });
         });
-
+        // limitToLast() 파이어 베이스 뒤에서 몇개 가지고옴
+        
         function myNavFunction(id) {
             $("#date-popover").hide();
             var nav = $("#" + id).data("navigation");
             var to = $("#" + id).data("to");
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
-        
-        $("#TABLE_STATISTICS").html(''); // 5. 통계 목록 초기화
-        firebase.database().ref('/user/log').once("value", function(snapshot) {
-            snapshot.forEach(function(childSnapshot){                
-                var childKey = childSnapshot.key; // 날짜 값 
-                var a_rate = childSnapshot.val().a_rate; // 달성률
-                var str_rate = Math.floor(childSnapshot.val().a_rate); // 달성률 소수점 버림
-                var targetkcal = childSnapshot.val().targetkcal; // 목표 칼로리
-                var kcal = childSnapshot.val().kcal.toFixed(3); // 소모 칼로리
+  
+        // $("#TABLE_STATISTICS").html(''); // 5. 통계 목록 초기화
+        // firebase.database().ref('/user/log').once("value", function(snapshot) {
+        //     snapshot.forEach(function(childSnapshot){                
+        //         var childKey = childSnapshot.key; // 날짜 값 
+        //         var a_rate = childSnapshot.val().a_rate; // 달성률
+        //         var str_rate = Math.floor(childSnapshot.val().a_rate); // 달성률 소수점 버림
+        //         var targetkcal = childSnapshot.val().targetkcal; // 목표 칼로리
+        //         var kcal = childSnapshot.val().kcal.toFixed(3); // 소모 칼로리
 
-            if (a_rate) { // 달성률 있을시 실행
-                var tr_tag = '<tr>'+
-                    '<td>'+ childKey +'</td>'+
-                    '<td>'+ targetkcal +'</td>'+
-                    '<td>'+ kcal +'</td>'+
-                    '<td class="text-right">'+ str_rate +' %' +'</td>'+
-                    '</tr>';
-                    $("#TABLE_STATISTICS").append(tr_tag);
-                }
+        //     if (a_rate) { // 달성률 있을시 실행
+        //         var tr_tag = '<tr>'+
+        //             '<td>'+ childKey +'</td>'+
+        //             '<td>'+ targetkcal +'</td>'+
+        //             '<td>'+ kcal +'</td>'+
+        //             '<td class="text-right">'+ str_rate +' %' +'</td>'+
+        //             '</tr>';
+        //             $("#TABLE_STATISTICS").append(tr_tag);
+        //         }
+        //     });
+        // });
+
+        /* 주간 별 값 가지고 오기 */
+        window.onload = function(){
+            // var weekChart = $('#weekData').data("data");
+            // $("#weekData").html(''); // 1. 주간통계 목록 초기화
+
+            // $('#weekData').attr("data-data",'[200,300,100]');
+            // // var ttest = $('#weekData').attr(data-data);
+            // // console.log(weekChart);
+            // // console.log('div data-data : '+ weekChart);  
+            
+            var array = new Array(); 
+            firebase.database().ref('/user/log')
+                .limitToLast(7)
+                .once("value", function(snapshot) {
+                snapshot.forEach(function(childSnapshot){       
+                    var a_rate = childSnapshot.val().a_rate; // 달성률
+                    var str_rate = Math.floor(childSnapshot.val().a_rate); // 달성률 소수점 버림
+                    console.log('주간 데이터 :'+ str_rate);
+                    var test =+ [str_rate];
+                    weekChart = str_rate;
+                    console.log('div'+ weekChart);  
+                    array.push(str_rate);
+                    console.log(array);  
+                    // console.log(test);
+                });
+                $("#weekData").sparkline(array, {
+                type:"line" ,
+                resize:"true" ,
+                height:"75",
+                width:"90%",
+                lineWidth:"1", 
+                lineColor:"#fff", 
+                spotColor:"#fff",
+                fillColor:"" ,
+                highLightLineColor:"#fff" ,
+                spotRadius:"4"  
+                });
             });
-        });
+            
+
+            // console.log(array.toString());
+            // var teest = $('#weekData').data("data",array);
+            // ttest2 = $('#weekData').data("data");
+            // console.log(ttest2)
+            // console.log('div data-data : '+ ttest2);
+            
+        /* 월별 값 가지고 오기 */
+            $('#BTN_SEARCH').click(function(){
+                $("#TABLE_STATISTICS").html(''); // 1. 통계 목록 초기화
+                var table_tag =
+                        '<thead>'+
+                            '<tr>'+
+                                '<th>'+ '날짜' +'</th>'+
+                                '<th>'+ '목표(Kcal)' +'</th>'+
+                                '<th>'+ '소모(Kcal)' +'</th>'+
+                                '<th class="text-right">'+ '달성률' +'</th>'+
+                                '</tr>'+
+                        '</thead>';
+                        $("#TABLE_STATISTICS").append(table_tag);
+
+            firebase.database().ref('/user/log').once("value", function(snapshot) {
+                snapshot.forEach(function(childSnapshot){       
+                    var childKey = childSnapshot.key; // 날짜 값
+                    var str_month = childSnapshot.key.toString();
+                    var monthVal = str_month.substr(0, 4) + '-' + str_month.substr(4, 2);
+                    var yyyyMM= $('#INPUT_MONTH').val();6
+
+                    var a_rate = childSnapshot.val().a_rate; // 달성률
+                    var str_rate = Math.floor(childSnapshot.val().a_rate); // 달성률 소수점 버림
+                    var targetkcal = childSnapshot.val().targetkcal; // 목표 칼로리
+                    var kcal = childSnapshot.val().kcal.toFixed(3); // 소모 칼로리
+                    
+
+                if (monthVal == yyyyMM) { // 년 월이 일치할시
+                    var tr_tag = 
+                        '<tr>'+
+                        '<td>'+ childKey +'</td>'+
+                        '<td>'+ targetkcal +'</td>'+
+                        '<td>'+ kcal +'</td>'+
+                        '<td class="text-right">'+ str_rate +' %' +'</td>'+
+                        '</tr>';
+                        $("#TABLE_STATISTICS").append(tr_tag);
+                    }
+                });
+            });
+        }); 
+    };
     </script>
   </body>
 </html>

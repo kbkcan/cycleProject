@@ -142,6 +142,9 @@
 
 	  firebase.database().ref().update(updates);
 	  alert('성공했습니다.');
+	  if(updates){
+		location.href="./dash.html"; 
+	  }
 	//   location.href="./dash.html";
 	});
 
