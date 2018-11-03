@@ -175,6 +175,28 @@
       RIGHT SIDEBAR CONTENT
       *********************************************************************************************************************************************************** -->
               </div><!-- /row -->
+              <br>
+              <div class="row">
+                <!-- TWITTER PANEL -->
+
+
+                <div class="col-md-12 col-sm-12 mb">
+                    <!-- REVENUE PANEL -->
+                    <div class="darkblue-panel pn">
+                        <div class="darkblue-header">
+                            <h5>주간 칼로리소모량</h5>
+                        </div>
+                        <div class="chart mt">
+                            <div class="sparkline" data-type="line" data-resize="true" data-height="75"
+                                data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff"
+                                data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4"
+                                data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
+                        </div>
+                    </div>
+                </div><!-- /col-md-4 -->
+
+            </div><!-- /row -->
+
               <div class="col-lg-9" style="margin-top: 5em;">
                 <select name="selectTime">
                     <option value='월별'>월별</option>
@@ -341,55 +363,26 @@
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
         
-        // $('#pagaeMain').click(function(){
-        //     // $.mobile.changePage('dash.html');
-        //     location.href="./dash.html";
-        // });
-
-        // $('#pagaeMain2').click(function(){
-        //     // $.mobile.changePage('dash.html');
-        //     location.href="./dash.html";
-        // });
-
-        // $('#pagaeMy').click(function(){
-        //     // $.mobile.changePage('./mypage.html');
-        //     location.href="./mypage.html";
-        // });
-        
-        // $('#pagaeStatistics').click(function(){
-        //     // $.mobile.changePage('./statistics.html');
-        //     location.href="./statistics.html";
-        // });
         $("#TABLE_STATISTICS").html(''); // 5. 통계 목록 초기화
-        firebase.database().ref('/user/log').on("value", function(snapshot) {
-            
-            snapshot.forEach(function(childSnapshot){
-                console.log(childSnapshot.key, childSnapshot.val().endTime);
-                // console.log(childSnapshot.val());
-                
-                var childKey = childSnapshot.key;
-                // var childVal = childSnapshot.val().endTime;
+        firebase.database().ref('/user/log').once("value", function(snapshot) {
+            snapshot.forEach(function(childSnapshot){                
+                var childKey = childSnapshot.key; // 날짜 값 
+                var a_rate = childSnapshot.val().a_rate; // 달성률
+                var str_rate = Math.floor(childSnapshot.val().a_rate); // 달성률 소수점 버림
+                var targetkcal = childSnapshot.val().targetkcal; // 목표 칼로리
+                var kcal = childSnapshot.val().kcal.toFixed(3); // 소모 칼로리
 
-                
-            
-            log_parent = snapshot.val()
-            if (childSnapshot.val().a_rate) {
-                // for (var i=0 ; i <childKey.length; i++){
-                //     console.log(childKey[i]);
-
-                
-            var tr_tag = '<tr>'+
-                    '<td>'+ childKey+'</td>'+
-                    '<td>'+ childSnapshot.val().endTime +'</td>'+
-                    '<td>'+ childSnapshot.val().exerciseTime +'</td>'+
-                    '<td class="text-right">'+ childSnapshot.val().a_rate +'</td>'+
+            if (a_rate) { // 달성률 있을시 실행
+                var tr_tag = '<tr>'+
+                    '<td>'+ childKey +'</td>'+
+                    '<td>'+ targetkcal +'</td>'+
+                    '<td>'+ kcal +'</td>'+
+                    '<td class="text-right">'+ str_rate +' %' +'</td>'+
                     '</tr>';
                     $("#TABLE_STATISTICS").append(tr_tag);
                 }
-            // }
             });
-        
-          });
+        });
     </script>
   </body>
 </html>
