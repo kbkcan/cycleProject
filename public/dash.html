@@ -215,7 +215,7 @@
                                         </div>
                                     </div>
                                 </div><!-- /row mt -->
-                                <div style="border:1px solid #dedede; width:100%; height:250px; line-height:250px; color:#666;font-size:100px; text-align:center;" id="clock"><span style='font-size:50px;'>00:00:00</span></div>
+                                <div style=" width:100%; height:250px; line-height:250px; color:#666;font-size:100px; text-align:center;" id="clock"><span style='font-size:50px;'>00:00:00</span></div>
                                 <br>
                                     <div class="btn-group btn-group-justified" role="group">
                                         <a  class="btn btn-lg btn-success" id="startPlay" onclick="startPlay();">운동시작</a >
@@ -348,6 +348,7 @@
         this.speed = 0;
         this.sumKcal = 0;
         this.sumDistance = 0;
+        this.targetKcal = 0;
     };
   
     
@@ -403,7 +404,6 @@
   
     function startPlay(){
         //cycleCount를 초기화 한다.
-        firebase.database().ref('/user/sumCycleCount').set(0);
         firebase.database().ref('/user/startFlag').set(1);
         //startTime의 log값을 만든다.
         var startAt = new Date();
@@ -444,7 +444,7 @@
             var sumCycleCount = parseInt(data['sumCycleCount']);
             var tenSecCycleCount = sumCycleCount - initialCycle;
             var targetKcal = parseInt(data['targetKcal']);
-            
+            log.targetKcal = targetKcal;
             if(tenSecCycleCount != 0){
                 //거리를 계산한다.
                 log.distance=calDistance(user,tenSecCycleCount);
@@ -498,15 +498,6 @@
         }, 0);
         
     }
-    function updateFirebase(log){
-        console.log(log)
-        var startTime = dateToString(log.startAt);
-        var ref ='/user/log/'+strStartAt;
-        firebase.database().ref(ref+'/distance').set(log.sumDistance);
-        firebase.database().ref(ref+'/kcal').set(log.sumKcal);
-        firebase.database().ref(ref+'/endTime').set(log.endAt);
-        firebase.database().ref(ref+'/speed').set(log.speed);
-    }
    var startInterval = null;
     $('#startPlay').click(function(){
         var startAt = new Date();
@@ -518,6 +509,7 @@
         btn_pause.classList.remove('disabled');
         btn_endPlay.classList.remove('disabled');
         startInterval = printClock(0);
+        firebase.database().ref('/user/startFlag').set(1);
     });
     var playTime = null;
     function printClock(exerciseTime) {
@@ -535,7 +527,7 @@
             var db_playTime = addZeros(hours,2)+":"+addZeros(minutes,2)+":"+addZeros(seconds,2)
             
             },1000);         // 1초마다 printClock() 함수 호출
-   
+        
         return timeInterval;
     }
     
@@ -555,16 +547,32 @@
             pauseFlag = 1;
             setTimeout(function(){
                 clearInterval(startInterval);
-            }, 0);
+            }, 0); 
+           
         }else if(pauseFlag == 1){
             $('#pause').text('일시정지');
             pauseFlag =0;
             startInterval = printClock(playTime);
         }
-        //firebase애 있는 운동시간을 업데이트한다.
-        var ref ='/user/log/'+strStartAt;
-            firebase.database().ref(ref+'/exerciseTime').set(playTime);
+        
+        //끝나는 시간과 운동시간을 업데이트한다.
+        updateEndTimeAndExerciseTime();
+        
     });
+    
+    function updateFirebase(log){
+        console.log(log)
+        var startTime = dateToString(log.startAt);
+        var endAt = new Date();
+        var strEndAt = dateToString(endAt);
+        var ref ='/user/log/'+strStartAt;
+        firebase.database().ref(ref+'/distance').set(log.sumDistance);
+        firebase.database().ref(ref+'/kcal').set(log.sumKcal);
+        firebase.database().ref(ref+'/endTime').set(strEndAt);
+        firebase.database().ref(ref+'/speed').set(log.speed);
+        firebase.database().ref(ref+'/targetkcal').set(log.targetKcal);
+        firebase.database().ref(ref+'/exerciseTime').set(playTime);
+    }
    
    /* 운동 종료버튼  클릭 시 */
    $('#endPlay').click(function(){
@@ -576,8 +584,8 @@
         btn_pause.classList.add('disabled');
         btn_endPlay.classList.add('disabled');
         //firebase애 있는 운동시간을 업데이트한다.
-        var ref ='/user/log/'+strStartAt;
-        firebase.database().ref(ref+'/exerciseTime').set(playTime);
+        updateEndTimeAndExerciseTime();
+        firebase.database().ref('/user/stopFlag').set(1);
     });
     
 function addZeros(num, digit) { // 자릿수 맞춰주기
@@ -589,6 +597,14 @@ function addZeros(num, digit) { // 자릿수 맞춰주기
         }
     }
     return zero + num;
+}
+function updateEndTimeAndExerciseTime(){
+    var endAt = new Date();
+    var strEndAt = dateToString(endAt);
+    var ref ='/user/log/'+strStartAt;
+    firebase.database().ref(ref+'/exerciseTime').set(playTime);
+    firebase.database().ref(ref+'/endTime').set(strEndAt);
+    console.log('endAt',endAt);
 }
    
    /* 로그아웃 버튼을 눌렀을 때 인증 해제 하도록 하기 */
