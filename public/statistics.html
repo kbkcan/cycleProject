@@ -382,7 +382,7 @@
                     '<td>'+ childKey+'</td>'+
                     '<td>'+ childSnapshot.val().endTime +'</td>'+
                     '<td>'+ childSnapshot.val().exerciseTime +'</td>'+
-                    '<td class="text-right">'+ '달성 %' +'</td>'+
+                    '<td class="text-right">'+ childSnapshot.val().a_rate +'</td>'+
                     '</tr>';
                     $("#TABLE_STATISTICS").append(tr_tag);
                 }
