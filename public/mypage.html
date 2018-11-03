@@ -72,17 +72,11 @@
 					<!-- 목표칼로리 입력 폼 -->
 					<input id="INPUT_CALORIES" type="number" class="form-control" placeholder="목표 칼로리를 입력하세요">
 					<br>
-					<div class="row z-depth-1">
-							<div class="col l12 m12 s12">
-							  <p>
-								데이터베이스 메세지 :
-								<!-- TODO 4. 상태 보기용 span 확인-->
-								 <span id="DB_MESSAGE" class="blue-text">(Loading..)</span>
-							   </p>
-							</div>
-						  </div>
 					<!-- 저장 버튼  -->
-		            <button id="BTN_SAVE" class="btn btn-theme btn-block" type="button"><i class="fa fa-save"></i> 저 장 하 기</button>
+					<button id="BTN_SAVE" class="btn btn-theme btn-block" type="button"><i class="fa fa-save"></i> 저 장 하 기</button>
+					<br>
+					<!-- 메인화면 버튼  -->
+		            <button id="BTN_MAIN" class="btn btn-success btn-block" type="button"><i class="fa fa-home"></i> 메 인 화 면</button>
 					
 		      </form>	  	
 	  	
@@ -112,25 +106,16 @@
 	 }
    });
 	
-   var new_wheel;
-   var result;
 	/* 드롭다운 리스트 클릭시 */
 	$(function(){
 		$(".dropdown-menu li").click(function(){
-			var index = $(this).index();
-			var value = $(this).val();
-			  console.log(index,value);
-			  new_wheel = $("#INPUT_WHEEL").val();
-			  console.log(parseDouble(value)*parseDouble(new_wheel));
-			  result = value * new_wheel;
-  			$(".btn:first-child").text($(this).text());
-			$(".btn:first-child").val($(this).text());
+		$(".btn:first-child").text($(this).text());
+		$(".btn:first-child").val($(this).text());
 		// $(".btn:first-child").text($(this).attr('value'));
 		});
 	});
 
 
-   
     /* 마이 페이지 Enter Key를 눌렀을 경우  */
 	var input = document.getElementById("INPUT_CALORIES");
 	input.addEventListener("keyup", function(event) {
@@ -145,19 +130,24 @@
 	  var new_weight = $("#INPUT_WEIGHT").val();
 	  var new_bike = $("#INPUT_BIKE").val();
 	  var new_calories = $("#INPUT_CALORIES").val();
-	  
-	  var new_reunit = $("#BTN_DROPDOWN").val();
-	  var new_reunit2 = $(".dropdown-menu").val();
-	  alert(new_reunit);
+	  var new_dimeter = $(".dropdown-menu li").val();
+	  var new_wheel = $("#INPUT_WHEEL").val();
+	  var result = parseFloat(new_wheel)*parseFloat(new_dimeter);
+
 	  var updates = {};
 	  updates['/user/weight'] = parseInt(new_weight);
 	  updates['/user/bike/bike_weight'] = parseInt(new_bike);
-	  updates['/user/bike/diameter'] = new_wheel;
+	  updates['/user/bike/diameter'] = parseFloat(result);
 	  updates['/user/targetKcal'] = parseInt(new_calories);
 
 	  firebase.database().ref().update(updates);
 	  alert('성공했습니다.');
 	//   location.href="./dash.html";
+	});
+
+	/* 메인화면 버튼 클릭시 처리 */
+	$('#BTN_MAIN').click(function(){
+		location.href="./dash.html";
 	});
 	
 	/* FireBase 값 읽어오기 Test*/
