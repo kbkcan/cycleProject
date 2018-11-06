@@ -458,7 +458,7 @@
 
     function printClock(exerciseTime,duration) {
     
-        this.timeInterval = setInterval(function(){
+        var timeInterval = setInterval(function(){
             exerciseTime = exerciseTime + 1000;
             playTime = exerciseTime;
             var clock = document.getElementById("clock");   // 출력할 장소 선택
@@ -476,7 +476,6 @@
     }
 
     
-
     
     function updateFirebase(log){
         console.log(log)
