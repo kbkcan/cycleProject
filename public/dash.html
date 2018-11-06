@@ -377,18 +377,22 @@
         btn_pause.classList.remove('disabled');
         btn_endPlay.classList.remove('disabled');
         
-        if(pauseFlag == 0){
+        if(pauseFlag == 0){ //이어서하기를 누르면
             $('#pause').text('이어서하기');
             pauseFlag = 1;
+            var ref ='/user/';
+            firebase.database().ref(ref+'/pauseFlag').set(1);
             setTimeout(function(){
                 clearInterval(oneSecIntervalId);
                 clearInterval(tenSecIntervalId);
             }, 0); 
 
            
-        }else if(pauseFlag == 1){
+        }else if(pauseFlag == 1){ //일시정지를 누르면
             $('#pause').text('일시정지');
             pauseFlag =0;
+            var ref ='/user/log/'+strStartAt;
+            firebase.database().ref(ref+'/pauseFlag').set(0);
             oneSecIntervalId = printClock(playTime,1000);
             tenSecIntervalId=startTimerToCheck(user)
 
@@ -444,7 +448,7 @@
                 //도넛을 그리면서 현재 목표달성률을 갱신한다.
                 a_rate = drawDonut(log.sumKcal,log.targetKcal);
                 log.a_rate = a_rate;
-                
+            
                 updateFirebase(log);
 
             }else{
