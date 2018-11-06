@@ -323,6 +323,9 @@
         //칼로리를 0으로 초기화
         $('#DB_kcal').text(0);
 
+        //일시정지 flag를 0으로 초기화
+        firebase.database().ref('/user/pauseFlag').set(0);
+
         
         firebase.database().ref('/user').once('value').then(function(snapshot) {
             data = snapshot.val();    
@@ -357,12 +360,12 @@
 
         //firebase애 있는 운동시간을 업데이트한다.
         updateEndTimeAndExerciseTime();
-        firebase.database().ref('/user/stopFlag').set(1);
 
         setTimeout(function(){
             clearInterval(oneSecIntervalId);
             clearInterval(tenSecIntervalId);
         }, 0);
+        firebase.database().ref('/user/pauseFlag').set(1);
     }
 
     
@@ -377,25 +380,21 @@
         btn_pause.classList.remove('disabled');
         btn_endPlay.classList.remove('disabled');
         
-        if(pauseFlag == 0){ //이어서하기를 누르면
-            $('#pause').text('이어서하기');
+        if(pauseFlag == 0){ //일시정지를 누르면
+
             pauseFlag = 1;
-            var ref ='/user/';
-            firebase.database().ref(ref+'/pauseFlag').set(1);
+            firebase.database().ref('/user/pauseFlag').set(1);
             setTimeout(function(){
                 clearInterval(oneSecIntervalId);
                 clearInterval(tenSecIntervalId);
             }, 0); 
-
-           
-        }else if(pauseFlag == 1){ //일시정지를 누르면
-            $('#pause').text('일시정지');
+            $('#pause').text('이어서하기');
+        }else if(pauseFlag == 1){ //이어서하기를 누르면
             pauseFlag =0;
-            var ref ='/user/log/'+strStartAt;
-            firebase.database().ref(ref+'/pauseFlag').set(0);
+            firebase.database().ref('/user/pauseFlag').set(0);
             oneSecIntervalId = printClock(playTime,1000);
             tenSecIntervalId=startTimerToCheck(user)
-
+            $('#pause').text('일시정지');
         }
         
         //끝나는 시간과 운동시간을 업데이트한다.
