@@ -62,9 +62,9 @@
 						<div class="input-group-btn">
 							<button id="BTN_DROPDOWN" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">휠 단위 <span class="caret"></span></button>
 							<ul class="dropdown-menu dropdown-menu-right" role="menu">
-							<li value='10'><a value=10>(cm)</a></li>
-							<li value='1'><a >(mm)</a></li>
-							<li value='25.4'><a>(in)</a></li>
+							<li value='100'><a>(cm)</a></li>
+							<li value='10'><a >(mm)</a></li>
+							<li value='254'><a>(in)</a></li>
 							</ul>
 						</div><!-- /btn-group -->
 					</div><!-- /input-group -->
@@ -107,10 +107,15 @@
    });
 	
 	/* 드롭다운 리스트 클릭시 */
+	var diameterUnit = 0;
 	$(function(){
 		$(".dropdown-menu li").click(function(){
+			
+			//클릭한 바퀴단위를 바꾼다. 
 		$(".btn:first-child").text($(this).text());
+
 		$(".btn:first-child").val($(this).text());
+		diameterUnit = $(this).val();
 		// $(".btn:first-child").text($(this).attr('value'));
 		});
 	});
@@ -130,9 +135,8 @@
 	  var new_weight = $("#INPUT_WEIGHT").val();
 	  var new_bike = $("#INPUT_BIKE").val();
 	  var new_calories = $("#INPUT_CALORIES").val();
-	  var new_dimeter = $(".dropdown-menu li").val();
 	  var new_wheel = $("#INPUT_WHEEL").val();
-	  var result = parseFloat(new_wheel)*parseFloat(new_dimeter);
+	  var result = parseFloat(new_wheel)*parseFloat(diameterUnit)/10;
 
 	  var updates = {};
 	  updates['/user/weight'] = parseInt(new_weight);
