@@ -454,7 +454,7 @@
                 $("#DB_speed").text(0);
             }
             });
-        }, 10000);
+        }, 30000);
         return intervalId;
     }
 
@@ -579,12 +579,13 @@ function updateEndTimeAndExerciseTime(){
     
     function calKcal(log,user,cycleCount){
         //칼로리(kcal) = (몸무게 + 자전거무게) * 평속에 따른 소모열량지수 * 운동시간(분)
-        var kcal = (user.weight + user.bike.bike_weight) * log.indice * (1/6);
+        var kcal = (user.weight + user.bike.bike_weight) * log.indice ;
         return kcal;
     };
     function calSpeed(log){
-        var speed = log.distance/(1/360);
+        var speed = log.distance/((1/360)*60);
         //10초 = > 1/6 분 => (1/6)*(60)
+        
         return speed;
     };
     function calDistance(user,cycleCount){
