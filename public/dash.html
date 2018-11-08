@@ -47,7 +47,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-    #serverstatus01{
+    #myChart{
         width: 200px !important;
         height: 100px !important;
     }
@@ -192,10 +192,7 @@
                                   <div class="row" style="display:inline-block !important;">
                                     <div class="col-xs-6">
                                         <!-- 원래 있던 차트 자리 -->
-                                        <canvas id="myChart" width="100%" height="100%"></canvas>
-                                       
-                                        <canvas id="donut" style="width:200px; height:100px;"></canvas>
-                                        
+                                        <canvas id="myChart" style="width:200px; height:100px;"></canvas>
                                     </div>
                                     <div class="col-xs-6" style="text-align: center; padding-top:13%;"> 
                                         <div style="color: #989898;" class="figure"><i class="fa fa-fire" style="font-size:1em"></i><span id="DB_kcal" style="font-size:1.1em; margin-left:5px;">0</span>
@@ -568,27 +565,20 @@ function drawDonut(sumKcal,targetKcal){
         data: {
             
             datasets: [{
-
+                label: '# of Votes',
                 data: [donutA, donutB],
                 backgroundColor: [
                     '#68dff0',
-                    '#444c57'
-                ],    value: 0,
-
+                    '#424a5d'
+                ],
                 borderColor: [
                     '#68dff0',
-                    '#68dff0'
-
+                    '#424a5d'
                 ],
                 borderWidth: 1
             }]
-        },
-        options: {
-            animation: {
-        duration: 0
-    }
-    }
-});
+        }
+});return donutA;
 }
 
 
