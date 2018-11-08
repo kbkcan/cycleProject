@@ -1,0 +1,103 @@
+[debug] [2018-11-02T04:16:57.906Z] ----------------------------------------------------------------------
+[debug] [2018-11-02T04:16:57.908Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\nk333\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-11-02T04:16:57.908Z] CLI Version:   5.0.1
+[debug] [2018-11-02T04:16:57.908Z] Platform:      win32
+[debug] [2018-11-02T04:16:57.908Z] Node Version:  v10.12.0
+[debug] [2018-11-02T04:16:57.910Z] Time:          Fri Nov 02 2018 13:16:57 GMT+0900 (GMT+09:00)
+[debug] [2018-11-02T04:16:57.910Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-11-02T04:16:57.919Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-11-02T04:16:57.919Z] > authorizing via signed-in user
+[debug] [2018-11-02T04:16:57.920Z] [iam] checking project pi-iot-1b450 for permissions ["firebase.projects.get"]
+[debug] [2018-11-02T04:16:57.921Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/pi-iot-1b450:testIamPermissions  
+
+[debug] [2018-11-02T04:16:59.471Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-02T04:16:59.473Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/pi-iot-1b450  
+ 
+[debug] [2018-11-02T04:17:00.706Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\devtools\GitHub\cycleProject'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-11-02T04:17:01.390Z] Fetching environment
+[debug] [2018-11-02T04:17:01.394Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1144253737:getServerAppConfig  
+ 
+[debug] [2018-11-02T04:17:01.395Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1144253737/clients/_:getWebAppConfig  
+ 
+[debug] [2018-11-02T04:17:02.295Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-02T04:17:02.295Z] Starting @google-cloud/functions-emulator
+[debug] [2018-11-02T04:17:02.326Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2018-11-02T04:17:04.330Z] Parsing function triggers
+[info] i  functions: No HTTPS functions found. Use firebase functions:shell if you would like to emulate other types of functions.
+[debug] [2018-11-03T05:55:00.220Z] ----------------------------------------------------------------------
+[debug] [2018-11-03T05:55:00.222Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\nk333\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-11-03T05:55:00.222Z] CLI Version:   5.0.1
+[debug] [2018-11-03T05:55:00.222Z] Platform:      win32
+[debug] [2018-11-03T05:55:00.222Z] Node Version:  v10.12.0
+[debug] [2018-11-03T05:55:00.225Z] Time:          Sat Nov 03 2018 14:55:00 GMT+0900 (GMT+09:00)
+[debug] [2018-11-03T05:55:00.225Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-11-03T05:55:00.239Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-11-03T05:55:00.239Z] > authorizing via signed-in user
+[debug] [2018-11-03T05:55:00.239Z] [iam] checking project pi-iot-1b450 for permissions ["firebase.projects.get"]
+[debug] [2018-11-03T05:55:00.241Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-11-03T05:55:00.241Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2018-11-03T05:55:01.035Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-03T05:55:01.040Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/pi-iot-1b450:testIamPermissions  
+
+[debug] [2018-11-03T05:55:02.539Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-03T05:55:02.542Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/pi-iot-1b450  
+ 
+[debug] [2018-11-03T05:55:03.770Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\devtools\GitHub\cycleProject'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-11-03T05:55:04.760Z] Fetching environment
+[debug] [2018-11-03T05:55:04.762Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1144253737:getServerAppConfig  
+ 
+[debug] [2018-11-03T05:55:04.762Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1144253737/clients/_:getWebAppConfig  
+ 
+[debug] [2018-11-03T05:55:05.541Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2018-11-03T05:55:05.605Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-03T05:55:05.605Z] Starting @google-cloud/functions-emulator
+[debug] [2018-11-03T05:55:08.138Z] Parsing function triggers
+[info] i  functions: No HTTPS functions found. Use firebase functions:shell if you would like to emulate other types of functions.
+[debug] [2018-11-03T05:59:41.777Z] ----------------------------------------------------------------------
+[debug] [2018-11-03T05:59:41.779Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\nk333\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-11-03T05:59:41.779Z] CLI Version:   5.0.1
+[debug] [2018-11-03T05:59:41.779Z] Platform:      win32
+[debug] [2018-11-03T05:59:41.779Z] Node Version:  v10.12.0
+[debug] [2018-11-03T05:59:41.782Z] Time:          Sat Nov 03 2018 14:59:41 GMT+0900 (GMT+09:00)
+[debug] [2018-11-03T05:59:41.782Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-11-03T05:59:41.791Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-11-03T05:59:41.792Z] > authorizing via signed-in user
+[debug] [2018-11-03T05:59:41.792Z] [iam] checking project pi-iot-1b450 for permissions ["firebase.projects.get"]
+[debug] [2018-11-03T05:59:41.794Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/pi-iot-1b450:testIamPermissions  
+
+[debug] [2018-11-03T05:59:43.212Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-03T05:59:43.213Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/pi-iot-1b450  
+ 
+[debug] [2018-11-03T05:59:44.386Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\devtools\GitHub\cycleProject'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-11-03T05:59:45.109Z] Fetching environment
+[debug] [2018-11-03T05:59:45.112Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1144253737:getServerAppConfig  
+ 
+[debug] [2018-11-03T05:59:45.112Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1144253737/clients/_:getWebAppConfig  
+ 
+[debug] [2018-11-03T05:59:45.864Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-03T05:59:45.865Z] Starting @google-cloud/functions-emulator
+[debug] [2018-11-03T05:59:45.995Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2018-11-03T05:59:47.907Z] Parsing function triggers
+[info] i  functions: No HTTPS functions found. Use firebase functions:shell if you would like to emulate other types of functions.
