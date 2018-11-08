@@ -25,6 +25,12 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     
     <!--external css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+
+
+
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
@@ -37,6 +43,7 @@
     <link href="assets/css/style-responsive.css" rel="stylesheet">
 
     <script src="assets/js/chart-master/Chart.js"></script>
+   
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -198,7 +205,7 @@
 
             </div><!-- /row -->
 
-              <div class="col-lg-9" style="margin-top: 5em;">
+              <!-- <div class="col-lg-9" style="margin-top: 5em;">
                 <select name="selectTime">
                     <option value='월별'>월별</option>
                     <option value='직접선택'>직접선택</option>
@@ -208,15 +215,15 @@
                     <input data-role="text" id="resultDate" type="text" readonly="true" placeholder="직접선택"/>
                 </a>
                     <input id="monthDate" type="date" placeholder="월별"/>
-                
-                <div data-role="popup"  id="popupBaseic" data-dismissible="false" >
+                 -->
+                <!-- <div data-role="popup"  id="popupBaseic" data-dismissible="false" >
                     <h4 align="center" style="margin-bottom: 1em;">날짜 선택</h4>
                     <input type="date" id="searchStart" placeholder="시작 날짜를 눌러주세요"/>
                     <input type="date" id="searchEnd" placeholder="끝 날짜를 눌러주세요" />
                     <a type="button" data-rel="back" data-role="button" id="sendDate" value="날짜선택 완료" style="margin: 1em 0em 1em 0em;">날짜선택완료</a>
                     <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
-                </div>
-                <script>
+                </div> -->
+                <!-- <script>
                     $(document).ready(function(){
                         if($('[name="selectTime"]').val() == '월별'){
                             $('#resultDate').css('display', 'none');
@@ -241,11 +248,23 @@
                     result = searchStart + searchEnd;
                     $('#resultDate').val(result)
                 });
-                </script>
-                <a data-role="button"><i class="fas fa-search"></i> 검색</a>
-
-                <input type="month" id="INPUT_MONTH" placeholder="날짜 입력" value = '2018-10' />
-                <a id="BTN_SEARCH" type="button"><i class="fas fa-search"></i> Test 검색</a>
+                </script> -->
+               
+                
+                    <h3 style="color: #444c57;" >월간 소모 칼로리</h3>
+                    <br>
+                    <div class="input-group">
+                      <input type="month" id="INPUT_MONTH" placeholder="날짜 입력" class="form-control">
+                      <span class="input-group-btn">
+                        <button id="BTN_SEARCH" class="btn btn-primary" style="height: 34px;" type="button"><i class="fas fa-search"></i>검색</button>
+                      </span>
+                    </div><!-- /input-group -->
+           
+                <!-- 달력 월 단위 -->
+                <!-- <div class="input-group date">
+                    <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div> -->
+                <br>
                 <div class="table-responsive table--no-card m-b-40 table-style">
                     <table id="TABLE_STATISTICS" class="table table-borderless table-striped table-earning">
                     </table>
@@ -258,8 +277,8 @@
   </section>
     
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/jquery-1.8.3.min.js"></script>
+    <!-- <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery-1.8.3.min.js"></script> -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
@@ -280,28 +299,7 @@
     <script src="assets/js/sparkline-chart.js"></script>    
     <script src="assets/js/zabuto_calendar.js"></script>	
     
-    <!-- 캘린더 스크립트 -->
-    
-    <script>
-    $("#sendDate").click(function(){
-        if($("#searchStart").val() == '' || $("#searchStart").val() == null){
-            alert('검색 날짜를 입력해주세요!');
-        }
-        else if($("#searchEnd").val() == '' || $("#searchEnd").val() == null){
-            alert('검색 날짜를 입력해주세요!');
-        }
-        
-            var searchStart = $("#searchStart").val();
-            var searchEnd = $("#searchEnd").val();
-            result = searchStart+" ~ "+searchEnd;
-            $("#resultDate").val(result);
-            $("#sendDate").attr('data-rel','back');
-            //$("#popupBaseic").css('visibility','hidden');
-    
-            
-        });
-       
-    </script>
+    <script src="js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>
 	
 	<!-- <script type="text/javascript">
         $(document).ready(function () {
@@ -349,8 +347,8 @@
                 ]
             });
         });
-        // limitToLast() 파이어 베이스 뒤에서 몇개 가지고옴
-        
+
+        // limitToLast() Firebase 7개씩 가지고옴
         function myNavFunction(id) {
             $("#date-popover").hide();
             var nav = $("#" + id).data("navigation");
@@ -393,17 +391,19 @@
             firebase.database().ref('/user/log')
                 .limitToLast(7)
                 .once("value", function(snapshot) {
-                snapshot.forEach(function(childSnapshot){       
+                snapshot.forEach(function(childSnapshot){
+                    if(childSnapshot.val().a_rate){
                     var a_rate = childSnapshot.val().a_rate; // 달성률
                     var str_rate = Math.floor(childSnapshot.val().a_rate); // 달성률 소수점 버림
                     console.log('주간 데이터 :'+ str_rate);
-                    var test =+ [str_rate];
                     weekChart = str_rate;
                     console.log('div'+ weekChart);  
                     array.push(str_rate);
                     console.log(array);  
                     // console.log(test);
+                }
                 });
+
                 $("#weekData").sparkline(array, {
                 type:"line" ,
                 resize:"true" ,
@@ -418,54 +418,62 @@
                 });
             });
             
-
-            // console.log(array.toString());
-            // var teest = $('#weekData').data("data",array);
-            // ttest2 = $('#weekData').data("data");
-            // console.log(ttest2)
-            // console.log('div data-data : '+ ttest2);
-            
         /* 월별 값 가지고 오기 */
-            $('#BTN_SEARCH').click(function(){
-                $("#TABLE_STATISTICS").html(''); // 1. 통계 목록 초기화
-                var table_tag =
-                        '<thead>'+
-                            '<tr>'+
-                                '<th>'+ '날짜' +'</th>'+
-                                '<th>'+ '목표(Kcal)' +'</th>'+
-                                '<th>'+ '소모(Kcal)' +'</th>'+
-                                '<th class="text-right">'+ '달성률' +'</th>'+
-                                '</tr>'+
-                        '</thead>';
-                        $("#TABLE_STATISTICS").append(table_tag);
+        $('#BTN_SEARCH').click(function(){
+            $("#TABLE_STATISTICS").html(''); // 1. 통계 목록 초기화
+            var table_tag =
+                    '<thead>'+
+                        '<tr>'+
+                            '<th>'+ '날짜' +'</th>'+
+                            '<th class="text-center">'+ '목표(Kcal)' +'</th>'+
+                            '<th class="text-center">'+ '소모(Kcal)' +'</th>'+
+                            '<th class="text-right">'+ '달성률' +'</th>'+
+                            '</tr>'+
+                    '</thead>';
+                    $("#TABLE_STATISTICS").append(table_tag);
 
             firebase.database().ref('/user/log').once("value", function(snapshot) {
                 snapshot.forEach(function(childSnapshot){       
                     var childKey = childSnapshot.key; // 날짜 값
                     var str_month = childSnapshot.key.toString();
                     var monthVal = str_month.substr(0, 4) + '-' + str_month.substr(4, 2);
-                    var yyyyMM= $('#INPUT_MONTH').val();6
-
+                    var yyyyMM= $('#INPUT_MONTH').val();
+                    var childKey_str = childKey.toString().substr(6,2)+'일'+ childKey.toString().substr(8,2) +'시'+childKey.toString().substr(10,2)+'분';
+                    console.log(childKey);
                     var a_rate = childSnapshot.val().a_rate; // 달성률
                     var str_rate = Math.floor(childSnapshot.val().a_rate); // 달성률 소수점 버림
                     var targetkcal = childSnapshot.val().targetkcal; // 목표 칼로리
                     var kcal = childSnapshot.val().kcal.toFixed(3); // 소모 칼로리
                     
-
                 if (monthVal == yyyyMM) { // 년 월이 일치할시
+                    if (a_rate>=0) { // 달성률 필드가 있는 칼럼만
                     var tr_tag = 
                         '<tr>'+
-                        '<td>'+ childKey +'</td>'+
-                        '<td>'+ targetkcal +'</td>'+
-                        '<td>'+ kcal +'</td>'+
+                        '<td>'+ childKey_str +'</td>'+
+                        '<td class="text-center">'+ targetkcal +'</td>'+
+                        '<td class="text-center">'+ kcal +'</td>'+
                         '<td class="text-right">'+ str_rate +' %' +'</td>'+
                         '</tr>';
                         $("#TABLE_STATISTICS").append(tr_tag);
+                        }
                     }
                 });
             });
         }); 
     };
+
+    /* 달력 월 단위 */
+    $(function(){
+    $('.input-group.date').datepicker({
+        calendarWeeks: false,
+        todayHighlight: true,
+        autoclose: true,
+        format: "yyyy-mm",
+        viewMode: "months", 
+        minViewMode: "months",
+        language: "kr"
+        });
+    });
     </script>
   </body>
 </html>

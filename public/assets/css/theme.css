@@ -4227,7 +4227,7 @@ section {
 }
 
 .table-earning thead th {
-    background: #333;
+    background: #444c57;
     font-size: 16px;
     color: #fff;
     vertical-align: middle;
@@ -4240,7 +4240,7 @@ section {
 
 .table-earning thead th.text-right {
     padding-left: 15px;
-    padding-right: 65px;
+    padding-right: 15px;
 }
 
 .table-earning tbody td {
@@ -4251,7 +4251,7 @@ section {
 
 .table-earning tbody td.text-right {
     padding-left: 15px;
-    padding-right: 65px;
+    padding-right: 15px;
 }
 
 .table-earning tbody tr:hover td {
